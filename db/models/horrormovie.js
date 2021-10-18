@@ -9,7 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     scarelevel: DataTypes.INTEGER
   }, {});
   HorrorMovie.associate = function(models) {
-    // associations can be defined here
+    HorrorMovie.hasMany(models.Review, {
+      foreignKey:'movieid'
+    });
+    HorrorMovie.hasMany(models.Vote, {
+      foreignKey:'horrormovieid'
+    });
+    HorrorMovie.belongsTo(models.Watchlist, {
+      foreignKey:'horrormovieid'
+    });
   };
   return HorrorMovie;
 };

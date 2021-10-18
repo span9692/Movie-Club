@@ -6,7 +6,12 @@ module.exports = (sequelize, DataTypes) => {
     movieid: DataTypes.INTEGER
   }, {});
   Review.associate = function(models) {
-    // associations can be defined here
+    Review.belongsTo(models.HorrorMovie, {
+      foreignKey:'movieid'
+    });
+    Review.belongsTo(models.User, {
+      foreignKey:'userid'
+    });
   };
   return Review;
 };

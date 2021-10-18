@@ -5,7 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     horrormovieid: DataTypes.INTEGER
   }, {});
   Watchlist.associate = function(models) {
-    // associations can be defined here
+    Watchlist.belongsTo(models.User, {
+      foreignKey:'userid'
+    });
+    Watchlist.hasMany(models.HorrorMovie, {
+      foreignKey:'horrormovieid'
+    });
   };
   return Watchlist;
 };
