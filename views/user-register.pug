@@ -6,11 +6,12 @@ block content
   +validationErrorSummary(errors)
   form(action='/user/register' method='post')
     //- input(type='hidden' name='_csrf' value=csrfToken)
-    +field('First Name', 'firstName', firstName)
-    +field('Last Name', 'lastName', lastName)
-    +field('Email Address', 'emailAddress', emailAddress)
-    +field('Password', 'password', password, 'password')
-    +field('Confirm Password', 'confirmPassword', '', 'password')
+    +field('First Name', 'firstname', firstname)
+    +field('Last Name', 'lastname', lastname)
+    +field('Email Address', 'email', email)
+    +field('User Name', 'username', username)
+    +field('Password', 'password', '', 'password')
+    +field('Confirm Password', 'confirmpassword', '', 'password')
     div(class='py-4')
       button(type='submit' class='btn btn-primary') Register
       a(href='/' class='btn btn-warning ml-2') Cancel

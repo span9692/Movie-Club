@@ -3,7 +3,7 @@ const db = require('./db/models');
 
 // Create a login user variable
 
-const userLogin = (req, res, user) => {
+const loginUser = (req, res, user) => {
     req.session.auth= {
         //Creating key value pair and setting it to the user's primary key.
         userId: user.id,
@@ -57,7 +57,7 @@ const userResto = async (req, res, next) => {
 
 //Exporting functions
 module.exports= {
-userLogin,
+loginUser,
 userLogout,
 requireAuth,
 userResto
