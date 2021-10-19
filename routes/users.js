@@ -178,16 +178,17 @@ usersRouter.post("/user/logout", (req, res) => {
 
 usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
   const horrorMovies = await db.HorrorMovie.findAll();
+  // const watchlist = db.Watchlist.create({userid, horrormovieid});
   res.render('watch-list', {title: 'User Movie Graveyard', horrorMovies})
 }));
 
 usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
-  const { horrormovieid } = req.body;
+  const { userid, horrormovieid } = req.body;
   const watchlist = db.Watchlist.create({
     userid,
     horrormovieid
   })
-  res.redirect('/movies')
+  res.redirect('/user/watchlist')
 }))
 
 
