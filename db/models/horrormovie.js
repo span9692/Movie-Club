@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     HorrorMovie.hasMany(models.Vote, {
       foreignKey:'horrormovieid'
     });
-    HorrorMovie.belongsTo(models.Watchlist, {
+    HorrorMovie.hasMany(models.Watchlist, {
       foreignKey:'horrormovieid'
     });
   };
