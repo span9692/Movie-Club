@@ -9,7 +9,7 @@ module.exports = {
       Example:
       */
    return queryInterface.bulkInsert('Reviews', [
-     {review:'Not too scary to be honest, decent cinematography.', userid:2,horrormovieid:25, createdAt:new Date(), updatedAt: new Date()}
+     {review:'Not too scary to be honest, decent cinematography.',userid:1,horrormovieid:25, createdAt:new Date(), updatedAt: new Date()}
     ], {});
   },
 
