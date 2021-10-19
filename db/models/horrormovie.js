@@ -6,16 +6,17 @@ module.exports = (sequelize, DataTypes) => {
     director: DataTypes.STRING,
     releasedate: DataTypes.DATE,
     rating: DataTypes.STRING,
-    scarelevel: DataTypes.INTEGER
+    scarelevel: DataTypes.INTEGER,
+    subGenre: DataTypes.STRING,
   }, {});
   HorrorMovie.associate = function(models) {
     HorrorMovie.hasMany(models.Review, {
-      foreignKey:'movieid'
+      foreignKey:'horrormovieid'
     });
     HorrorMovie.hasMany(models.Vote, {
       foreignKey:'horrormovieid'
     });
-    HorrorMovie.belongsTo(models.Watchlist, {
+    HorrorMovie.hasMany(models.Watchlist, {
       foreignKey:'horrormovieid'
     });
   };

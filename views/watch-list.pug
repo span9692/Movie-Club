@@ -11,12 +11,16 @@ block content
         th(scope='col') Release Date
         th(scope='col') Rating
         th(scope='col') Scare Level
-        th(scope='col') Sub-Genre
+
     tbody
       each horrorMovie in horrorMovies
         tr
           td= horrorMovie.title
           td= horrorMovie.director
           td= horrorMovie.releasedate
-        //-   td= (park.attractions.length || 0)
-        //-   td: a(class='btn btn-primary' href=`/park/${park.id}` role='button') Details
+          td= horrorMovie.rating
+          td= horrorMovie.scarelevel
+          td
+            div
+                a(class='btn btn-primary', type='button', href='/') Remove Movie From Graveyard
+

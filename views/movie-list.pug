@@ -11,12 +11,18 @@ block content
         th(scope='col') Release Date
         th(scope='col') Rating
         th(scope='col') Scare Level
-        th(scope='col') Sub-Genre
+        th(scope='col') Add To Graveyard
+
     tbody
-    //-   each horrorMovie in horrorMovies
-    //-     tr
-    //-       td= horrorMovie.title
-    //-       td= horrorMovie.director
-    //-       td= horrorMovie.releasedate
-        //-   td= (park.attractions.length || 0)
-        //-   td: a(class='btn btn-primary' href=`/park/${park.id}` role='button') Details
+      each horrorMovie in horrorMovies
+        tr
+          td= horrorMovie.title
+          td= horrorMovie.director
+          td= horrorMovie.releasedate
+          td= horrorMovie.rating
+          td= horrorMovie.scarelevel
+          td
+            div
+                form(action='/user/watchlist' method='post' type='hidden')
+                button(type='submit' class='btn btn-primary') Add Movie To Graveyard
+                //- a(class='btn btn-warning ml-2' href='/') Cancel

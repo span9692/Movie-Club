@@ -1,0 +1,20 @@
+extends layout.pug
+
+block content
+    h1= result.title
+    div
+        h3= `Directed By: ${result.director}`
+        h3= `Scare Level: ${result.scarelevel}`
+        h3= `Rating: ${result.rating}`
+        h3= `Release Date: ${result.releasedate}`
+        h3= `Subgenre: ${result.subGenre}`
+
+    <!-- Add a photo here later-->
+    p IMAGE INCOMING
+    <!-- Add a movie description -->
+    h3 Write a Review
+    textarea REVIEWS INCOMING
+    div
+        button Submit
+
+    //- each asdf in result.Reviews

@@ -1,4 +1,7 @@
 'use strict';
+
+const watchlist = require("./watchlist");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstname: DataTypes.STRING,
@@ -21,3 +24,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   return User;
 };
+//click on ADD WATCHLIST (small form with submit button)
+//watchlist post route, destruct id from req.body
+//find movie by id - validation, not needed
+//watchlist.create passing in userid and movieid
+//create a watchlist
+//watchlist.findAll(userId)

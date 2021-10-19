@@ -177,7 +177,26 @@ usersRouter.post("/user/logout", (req, res) => {
 });
 
 usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
-  res.render('watch-list', {title: 'User Movie Graveyard'})
+  const horrorMovies = await db.HorrorMovie.findAll();
+  // const watchlist = db.Watchlist.create({userid, horrormovieid});
+  res.render('watch-list', {title: 'User Movie Graveyard', horrorMovies})
 }));
 
+usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
+  const { userid, horrormovieid } = req.body;
+  const watchlist = db.Watchlist.create({
+    userid,
+    horrormovieid
+  })
+  res.redirect('/user/watchlist')
+}))
+
+
+
+//click on ADD WATCHLIST (small form with submit button)
+//watchlist post route, destruct id from req.body
+//find movie by id - validation, not needed
+//watchlist.create passing in userid and movieid
+//create a watchlist
+//watchlist.findAll(userId)
 module.exports = usersRouter;

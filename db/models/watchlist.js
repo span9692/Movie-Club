@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     Watchlist.belongsTo(models.User, {
       foreignKey:'userid'
     });
-    Watchlist.hasMany(models.HorrorMovie, {
-      foreignKey:'horrormovieid'
+    Watchlist.belongsTo(models.HorrorMovie, {
+      foreignKey: 'horrormovieid'
     });
   };
   return Watchlist;
