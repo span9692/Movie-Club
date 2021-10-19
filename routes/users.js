@@ -147,7 +147,7 @@ usersRouter.post('/user/login', loginValidators,
       if (user !== null) {
         // If the user exists then compare their password
         // to the provided password.
-        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+        const passwordMatch = await bcrypt.compare(password, user.hashedpassword.toString());
 
         if (passwordMatch) {
           // If the password hashes match, then login the user
