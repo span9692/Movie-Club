@@ -16,7 +16,7 @@ moviesRouter.get('/movies/:movieid(\\d+)', asyncHandler(async(req, res, next) =>
 
     const result = await db.HorrorMovie.findByPk(movieid, {
         where: { id: movieid },
-        include: db.Review.reviews
+        include: db.Review
     });
 
     console.log(result)
