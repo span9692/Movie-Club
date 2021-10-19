@@ -19,8 +19,7 @@ moviesRouter.get('/movies/:movieid(\\d+)', asyncHandler(async(req, res, next) =>
         include: db.Review
     });
 
-    console.log(result)
-
+    // console.log(result.Reviews[0].review)
     res.render('movie-page', {title: 'Movies', result});
 }));
 

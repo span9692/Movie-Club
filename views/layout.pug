@@ -16,7 +16,10 @@ html
     a(href='/user/watchlist' class='btn btn-primary') My Movie Graveyard
 
     form(class='search_bar' method='post')
-      label(for='search')
-      input(type='text' name='search')
-      button(class='search_button') Search
+
+        label(for='search')
+        input(type='text' name='search')
+         a(class='btn btn-primary', type='button', href='/search') Search
+
+
     block content
