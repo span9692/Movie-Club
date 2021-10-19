@@ -11,12 +11,17 @@ block content
         th(scope='col') Release Date
         th(scope='col') Rating
         th(scope='col') Scare Level
-        th(scope='col') Sub-Genre
+
     tbody
-    //-   each horrorMovie in horrorMovies
-    //-     tr
-    //-       td= horrorMovie.title
-    //-       td= horrorMovie.director
-    //-       td= horrorMovie.releasedate
-        //-   td= (park.attractions.length || 0)
-        //-   td: a(class='btn btn-primary' href=`/park/${park.id}` role='button') Details
+      each watchlist in horrorMovies
+        tr
+          td= watchlist.HorrorMovie.title
+          td= watchlist.HorrorMovie.director
+          td= watchlist.HorrorMovie.releasedate
+          td= watchlist.HorrorMovie.rating
+          td= watchlist.HorrorMovie.scarelevel
+          td
+            div
+                form(action='/user/watchlist/:id/delete' method='post')
+                  input(type='hidden' name='horrormovieid' value=watchlist.id)
+                  button(type='submit' class='btn btn-primary') Remove Movie From Graveyard

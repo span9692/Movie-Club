@@ -8,8 +8,19 @@ html
         //- link(rel="stylesheet" href="main.css")
 
   body
+
     form(class='search_bar' method='get')
         label(for='search')
         input(type='text' name='search')
         a(class='btn btn-primary', type='button', href='/search') Search
+
+    a(href='/') Home
+
+    a(href='/user/register' class='btn btn-primary') Register
+    a(href='/user/login' class='btn btn-primary') Login
+    a(href='/' class='btn btn-primary') Logout
+    a(href='/movies' class='btn btn-primary') Movie Database
+    a(href='/user/watchlist' class='btn btn-primary') My Movie Graveyard
+
+
     block content
