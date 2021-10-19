@@ -11,7 +11,7 @@ const loginUser = (req, res, user) => {
 };
 
 // Now we will delete the login user here with this function.
-const userLogout = (req, res) => {
+const logoutUser = (req, res) => {
     // Deleting the entire req.session.auth object.
     delete req.session.auth;
 };
@@ -58,7 +58,7 @@ const userResto = async (req, res, next) => {
 //Exporting functions
 module.exports= {
 loginUser,
-userLogout,
+logoutUser,
 requireAuth,
 userResto
 }

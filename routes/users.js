@@ -10,12 +10,12 @@ const usersRouter = express.Router();
 
 /* GET users listing. */
 
-usersRouter.get("/user/register", /*csrfProtection, */(req, res) => {
+usersRouter.get("/user/register", csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render("user-register", {
     title: "Register",
     user,
-    // csrfToken: req.csrfToken(),
+    csrfToken: req.csrfToken(),
   });
 });
 
@@ -173,7 +173,7 @@ usersRouter.post('/user/login', loginValidators,
 
 usersRouter.post("/user/logout", (req, res) => {
   logoutUser(req, res);
-  res.redirect("/");
+  res.redirect('/');
 });
 
 usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
@@ -192,7 +192,7 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
     horrormovieid
   })
   res.redirect('/user/watchlist')
-}))
+}));
 
 
 
