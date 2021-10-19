@@ -177,7 +177,8 @@ usersRouter.post("/user/logout", (req, res) => {
 });
 
 usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
-  res.render('watch-list', {title: 'User Movie Graveyard'})
+  const horrorMovies = await db.HorrorMovie.findAll();
+  res.render('watch-list', {title: 'User Movie Graveyard', horrorMovies})
 }));
 
 module.exports = usersRouter;

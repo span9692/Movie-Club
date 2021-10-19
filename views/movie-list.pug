@@ -11,6 +11,7 @@ block content
         th(scope='col') Release Date
         th(scope='col') Rating
         th(scope='col') Scare Level
+        th(scope='col') Add To Graveyard
 
     tbody
       each horrorMovie in horrorMovies
@@ -20,3 +21,6 @@ block content
           td= horrorMovie.releasedate
           td= horrorMovie.rating
           td= horrorMovie.scarelevel
+          td
+            div
+                a(class='btn btn-primary', type='button', href='/user/watchlist') Add Movie To Graveyard
