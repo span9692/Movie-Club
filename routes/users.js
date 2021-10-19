@@ -80,7 +80,7 @@ const userValidators = [
   ];
 
   usersRouter.post("/user/register", userValidators, asyncHandler(async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
   const {
     firstname,
     lastname,
@@ -179,7 +179,7 @@ usersRouter.post("/user/logout", (req, res) => {
 usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
   const { userId } = req.session.auth
   const horrorMovies = await db.Watchlist.findAll({where: {userid: userId}, include: db.HorrorMovie });
-  console.log(horrorMovies)
+  // console.log(horrorMovies)
   // const watchlist = db.Watchlist.create({userid, horrormovieid});
   res.render('watch-list', {title: 'User Movie Graveyard', horrorMovies})
 }));
@@ -193,6 +193,13 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   })
   res.redirect('/user/watchlist')
 }));
+
+usersRouter.post('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
+  const { horrormovieid } = req.body
+  const watchlist = await db.Watchlist.findByPk(horrormovieid);
+  await watchlist.destroy();
+  res.redirect('/user/watchlist')
+}))
 
 
 
