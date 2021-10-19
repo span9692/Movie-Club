@@ -9,6 +9,8 @@ block content
     +field('Email Address', 'email', email)
     +field('Password', 'password', null, 'password')
     div(class='py-4')
-      button(type='submit' class='btn btn-primary') Login
-      a(href='/' class='btn btn-warning ml-2') Cancel
-      a(href='/user/register' class='btn btn-primary') Register
+      button(type='submit' class='btn-primary') Login
+      div
+        a(href='/user/register' class='btn-primary') Register
+      div
+        a(href='/' class='btn-warning') Cancel

@@ -89,7 +89,7 @@ const userValidators = [
     password
   } = req.body;
 
-  const user = db.User.build({
+  const user = await db.User.build({
     firstname,
     lastname,
     email,
@@ -175,5 +175,9 @@ usersRouter.post("/user/logout", (req, res) => {
   logoutUser(req, res);
   res.redirect("/");
 });
+
+usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
+  res.render('watch-list', {title: 'User Movie Graveyard'})
+}));
 
 module.exports = usersRouter;
