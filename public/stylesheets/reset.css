@@ -50,3 +50,12 @@ h1 {
   font-size: 3rem;
   color: red;
 }
+
+.search_bar {
+  display: block;
+}
+
+.search_button {
+  background-color: black;
+  color: grey
+}
