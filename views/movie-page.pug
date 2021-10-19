@@ -16,5 +16,6 @@ block content
     textarea REVIEWS INCOMING
     div
         button Submit
-
-    //- each asdf in result.Reviews
+    ul
+        each userReview in result.Reviews
+            li= userReview.review
