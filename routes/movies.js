@@ -15,8 +15,11 @@ moviesRouter.get('/movies/:movieid(\\d+)', asyncHandler(async(req, res, next) =>
     const movieid = parseInt(req.params.movieid, 10);
 
     const result = await db.HorrorMovie.findByPk(movieid, {
-        where: { id: movieid }
+        where: { id: movieid },
+        include: db.Review.reviews
     });
+
+    console.log(result)
 
     res.render('movie-page', {title: 'Movies', result});
 }));
