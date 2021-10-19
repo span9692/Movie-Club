@@ -23,6 +23,7 @@ block content
           td= horrorMovie.scarelevel
           td
             div
-                form(action='/user/watchlist' method='post' type='hidden')
-                button(type='submit' class='btn btn-primary') Add Movie To Graveyard
+                form(action='/user/watchlist' method='post')
+                  input(type='hidden' name='horrormovieid' value=horrorMovie.id)
+                  button(type='submit' class='btn btn-primary') Add Movie To Graveyard
                 //- a(class='btn btn-warning ml-2' href='/') Cancel
