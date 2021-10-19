@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references:{model:'Users'}
       },
-      movieid: {
+      horrormovieid: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references:{model:'HorrorMovies'}
