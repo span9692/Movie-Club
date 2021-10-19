@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   HorrorMovie.associate = function(models) {
     HorrorMovie.hasMany(models.Review, {
-      foreignKey:'movieid'
+      foreignKey:'horrormovieid'
     });
     HorrorMovie.hasMany(models.Vote, {
       foreignKey:'horrormovieid'
