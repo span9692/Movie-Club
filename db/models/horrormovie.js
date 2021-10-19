@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     releasedate: DataTypes.DATE,
     rating: DataTypes.STRING,
     scarelevel: DataTypes.INTEGER,
+    subGenre: DataTypes.STRING,
   }, {});
   HorrorMovie.associate = function(models) {
     HorrorMovie.hasMany(models.Review, {
