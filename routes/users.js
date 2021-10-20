@@ -191,7 +191,13 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
     userid: userId,
     horrormovieid
   })
-  res.redirect('/user/watchlist')
+  // res.redirect('/movies')
+  const response = await fetch('/movies', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
 }));
 
 usersRouter.post('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
