@@ -13,9 +13,13 @@ block content
     p IMAGE INCOMING
     <!-- Add a movie description -->
     h3 Write a Review
-    textarea REVIEWS INCOMING
     div
-        button Submit
-    ul
-        each userReview in result.Reviews
-            li= userReview.review
+        form(action='/review' class='review-input' method='post')
+        label(for='review')
+        textarea(type='text' name='review')
+        button(class='btn btn-primary' type='submit') Submit
+    div(class='bigReviewBoxDiv')
+        ul
+            each userReview in result.Reviews
+                div(class='smallReviewBoxDiv')
+                    li= userReview.review
