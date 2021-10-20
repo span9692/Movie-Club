@@ -23,18 +23,18 @@ moviesRouter.get('/movies/:movieid(\\d+)', asyncHandler(async(req, res, next) =>
     res.render('movie-page', {title: 'Movies', result});
 }));
 // Reviews Post Route
-moviesRouter.post('/movies/:movieid(\\d+)'), asyncHandler(async(req, res,next) => {
+moviesRouter.post('/movies/:movieid', asyncHandler(async(req, res,next) => {
     const movieid= parseInt(req.params.movieid, 10);
-    const { userid }=req.session.auth;
+    const { userId }=req.session.auth;
     const {horrormovieid, review} = req.body;
     const reviewPost = await db.Review.create({
-        userid,
-        horrormovieid,
-        review
+        review,
+        userid: userId,
+        horrormovieid
     })
-    res.render('movie-page', {title: 'Movies', reviewPost});
+    res.redirect(`/movies/${movieid}`);
 
-})
+}))
 
 
 module.exports = moviesRouter;
