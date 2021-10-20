@@ -194,19 +194,33 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   })
 
   // res.end();
-  // const response = await fetch('/movies', {
-    //   method: 'GET',
-    //   headers: {
-      //     // 'Content-Type': 'application/x-www-form-urlencoded'
-      //     'Content-Type': 'application/json'
-      //   }
-      // })
-      // .then((x) => console.log(x.status))
-      // console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
-      // console.log(response)
+  await fetch('http://localhost:8080/movies')//,
+  // {
+  // method: 'GET',
+  // headers: {
+  //     // 'Content-Type': 'application/x-www-form-urlencoded'
+  //     'Content-Type': 'application/json'
+  //   },
+  // body: JSON.stringify()
+  // })
+  .then((x) => x)
+  console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
+  // console.log(response)
+  // const response = await fetch('http://localhost:8080/movies')//,
+  //     // {
+  //     // method: 'GET',
+  //     // headers: {
+  //     //     // 'Content-Type': 'application/x-www-form-urlencoded'
+  //     //     'Content-Type': 'application/json'
+  //     //   },
+  //     // body: JSON.stringify()
+  //     // })
+  //     .then((x) => console.log(x.url))
+  //     console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
+  //     console.log(response)
 
       // return response.json()
-  res.redirect('/movies')
+  // res.redirect('/movies')
 }));
 
 usersRouter.post('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
