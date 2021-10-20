@@ -6,7 +6,6 @@ const { csrfProtection, asyncHandler } = require('./utils');
 const moviesRouter = express.Router();
 
 moviesRouter.get('/movies', asyncHandler(async(req, res, next) => {
-    console.log('were here');
     const horrorMovies = await db.HorrorMovie.findAll();
     res.render('movie-list', {title: 'Movies', horrorMovies});
 }));
@@ -18,8 +17,6 @@ moviesRouter.get('/movies/:movieid(\\d+)', asyncHandler(async(req, res, next) =>
         where: { id: movieid },
         include: db.Review
     });
-
-    // console.log(result.Reviews[0].review)
     res.render('movie-page', {title: 'Movies', result});
 }));
 // Reviews Post Route
