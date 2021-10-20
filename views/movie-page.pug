@@ -14,10 +14,11 @@ block content
     <!-- Add a movie description -->
     h3 Write a Review
     div
-        form(action='/review' class='review-input' method='post')
-        label(for='review')
-        textarea(type='text' name='review')
-        button(class='btn btn-primary' type='submit') Submit
+        form(action=`/movies/${result.id}` class='review-input' method='post')
+            label(for='review')
+            textarea(type='text' name='review')
+            input(type='hidden' name='horrormovieid' value=result.id)
+            button(class='btn btn-primary' type='submit') Submit
     div(class='bigReviewBoxDiv')
         ul
             each userReview in result.Reviews
