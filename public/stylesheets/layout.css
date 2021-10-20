@@ -1,3 +1,7 @@
+body{
+    font-family: fantasy;
+}
+
 .btn1 {
     border-radius: 25px;
     background-color: grey;
@@ -35,6 +39,10 @@ h1 {
     justify-content: center;
 }
 .register-form {
+    display: flex;
+    justify-content: center;
+}
+.movie-lib-div, .movie-graveyard-div {
     display: flex;
     justify-content: center;
 }
