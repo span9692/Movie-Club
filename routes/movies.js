@@ -35,8 +35,9 @@ moviesRouter.post('/movies/:movieid', asyncHandler(async(req, res,next) => {
 
 // Reviews Edit Route
 moviesRouter.post('/movies/:movieid/edit', asyncHandler(async(req, res, next) => {
+    const {reviewid}=req.body;
     const movieid= parseInt(req.params.movieid, 10);
-    const reviewEdit = await db.Review.findByPk(db.Review.id);
+    const reviewEdit = await db.Review.findByPk(reviewid);
     await reviewEdit.update();
     res.redirect(`/movies/${movieid}`);
   }))
@@ -44,7 +45,8 @@ moviesRouter.post('/movies/:movieid/edit', asyncHandler(async(req, res, next) =>
 
 moviesRouter.post('/movies/:movieid/delete', asyncHandler(async(req, res, next) => {
     const movieid= parseInt(req.params.movieid, 10);
-    const reviewDestroy = await db.Review.findByPk(db.Review.id);
+    const {reviewid}=req.body;
+    const reviewDestroy = await db.Review.findByPk(reviewid);
     await reviewDestroy.destroy();
     res.redirect(`/movies/${movieid}`);
   }))
