@@ -9,10 +9,10 @@ html
 
   body
 
-    form(class='search_bar' method='get')
+    form(action='/search' class='search-input' method='post')
         label(for='search')
         input(type='text' name='search')
-        a(class='btn btn-primary', type='button', href='/search') Search
+        button(class='btn btn-primary' type='submit') Search
 
     a(href='/') Home
 
