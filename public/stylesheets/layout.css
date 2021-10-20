@@ -14,6 +14,7 @@ a {
 .sb1 {
     border-radius: 25px;
     background-color: maroon;
+    color: white;
 }
 .search-input {
     display: flex;
@@ -22,4 +23,18 @@ a {
 
 h1 {
     color: #555555
+}
+
+.lk1 {
+    border-radius: 25%;
+    background-color: #3b1010;
+}
+
+.register-p{
+    display: flex;
+    justify-content: center;
+}
+.register-form {
+    display: flex;
+    justify-content: center;
 }

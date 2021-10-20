@@ -7,7 +7,8 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Your personal horror movie collection
-
-  
+  h1(class='landing-h1')= title
+    h2(class='landing-h2') Your Personal Horror Movie Collection
+    div(class='register-login-buttons')
+        a(href='/user/register' class='lk1') Register
+        a(href='/user/login' class='lk1') Login

@@ -2,7 +2,14 @@ extends layout.pug
 
 include utils.pug
 
+  head
+    link(rel='stylesheet' href='/stylesheets/layout.css')
+
 block content
+
+  div(class='register-form')
+    p Here is where you can sign up for a Cinema Screamings account!
+
   +validationErrorSummary(errors)
   form(action='/user/register' method='post')
     //- input(type='hidden' name='_csrf' value=csrfToken)
@@ -15,6 +22,6 @@ block content
     div(class='py-4')
       button(type='submit' class='btn btn-primary') Register
   div
-    p: a(href='/user/login') Already have an account?
+    p: a(href='/user/login' class='lk1') Already have an account?
     div
-      a(href='/' class='button') Cancel
+      a(href='/' class='lk1') Cancel

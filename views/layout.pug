@@ -9,17 +9,18 @@ html
 
   body
 
+    div
+      p Hello
     div(class='header')
-      a(href='/') Home
-      a(href='/user/register' class='lk1') Register
-      a(href='/user/login' class='lk1') Login
+      a(href='/' class='lk1') Home
+      
       a(href='/' class='lk1') Logout
       a(href='/movies' class='lk1') Movie Database
       a(href='/user/watchlist' class='lk1') My Movie Graveyard
 
-
-    form(action='/search' class='search-input' method='post')
-        label(for='search')
-        input(type='text' name='search' class='sb1')
-        button(class='btn1' type='submit') Search
+    div
+      form(action='/search' class='search-input' method='post')
+          label(for='search')
+          input(type='text' name='search' class='sb1')
+          button(class='btn1' type='submit') Search
     block content
