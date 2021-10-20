@@ -194,7 +194,14 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   })
 
   // res.end();
-  await fetch('http://localhost:8080/movies')//,
+  // await fetch('http://localhost:8080/movies', {
+  //   method: "POST",
+  //   headers: {'Content-Type': 'application/json'}
+  //   body:
+  //   }
+  // )//,
+  // .then((response) => response.body)
+  // console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
   // {
   // method: 'GET',
   // headers: {
@@ -203,8 +210,6 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   //   },
   // body: JSON.stringify()
   // })
-  .then((x) => x)
-  console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
   // console.log(response)
   // const response = await fetch('http://localhost:8080/movies')//,
   //     // {
