@@ -1,0 +1,25 @@
+.btn1 {
+    border-radius: 25px;
+    background-color: grey;
+}
+a {
+    color: red;
+  }
+
+  .header {
+      display: flex;
+      justify-content: space-between;
+  }
+
+.sb1 {
+    border-radius: 25px;
+    background-color: maroon;
+}
+.search-input {
+    display: flex;
+    align-items: flex-end;
+}
+
+h1 {
+    color: #555555
+}
