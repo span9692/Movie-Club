@@ -20,11 +20,11 @@ block content
     button(id='downvote') downvote
         p(id='down')
     <!-- Add a movie description -->
-    h3 Write a Review
+    h3 Edit Your Review
     div
-        form(action=`/movies/${result.id}` class='review-input' method='post')
+        form(action=`/movies/${userReview.id}/edit` class='review-input' method='post')
             label(for='review')
-            textarea(type='text' name='review')
+            textarea(type='text' name='review' placeholder=`${userReview.id}`)
             input(type='hidden' name='horrormovieid' value=result.id)
             button(class='btn btn-primary' type='submit') Submit
     div(class='bigReviewBoxDiv')
@@ -32,7 +32,7 @@ block content
             each userReview in result.Reviews
                 div(class='smallReviewBoxDiv')
                     li= userReview.review
-                        form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
+                        form(action=`movies/${result.id}/edit/${userReview.id}` class='review-input' method='put')
                             label(for='review')
                             input(type='hidden' name='reviewid' value=userReview.id)
                             input(type='hidden' name='horrormovieid' value=result.id)

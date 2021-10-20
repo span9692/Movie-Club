@@ -34,13 +34,29 @@ moviesRouter.post('/movies/:movieid', asyncHandler(async(req, res,next) => {
 }))
 
 // Reviews Edit Route
-moviesRouter.post('/movies/:movieid/edit', asyncHandler(async(req, res, next) => {
-    const {reviewid}=req.body;
+moviesRouter.post('/movies/:movieid/edit/:reviewid', asyncHandler(async(req, res, next) => {
+    console.log('I AM HERE');
+    const {reviewid}=req.params;
     const movieid= parseInt(req.params.movieid, 10);
-    const reviewEdit = await db.Review.findByPk(reviewid);
-    await reviewEdit.update();
-    res.redirect(`/movies/${movieid}`);
+    console.log(movieid,reviewid);
+    const result = await db.Review.findByPk(reviewid, {
+        include: db.HorrorMovie
+    });
+    // await reviewEdit.update();
+    // res.redirect(`/movies/${movieid}/edit/${reviewid}`);
+
+    // const result = await db.HorrorMovie.findByPk(movieid, {
+    //     where: { id: movieid },
+    //     include: db.Review
+    // });
+    res.render('movie-page-edit', {title: 'Movies', result, reviewid});
+    // res.redirect('/');
   }))
+
+  //Reviews Edit Get Router
+  moviesRouter.get('/movies/:movieid/edit/:reviewid'), asyncHandler(async(req, res, next) => {
+      console.log('I AM STILL HERE');
+  })
 //Reviews Delete Route
 
 moviesRouter.post('/movies/:movieid/delete', asyncHandler(async(req, res, next) => {
