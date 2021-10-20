@@ -8,12 +8,17 @@ const searchRouter = express.Router();
 
 searchRouter.post('/search', asyncHandler(async(req, res, next) => {
     const {title, director, releasedate, rating, scarelevel, subGenre}= req.body;
-    const horrorMovies = await db.HorrorMovie.findAll(
-        {where:{[Op.iLike]:`%${req.body.search}%`}
+    const horrorMovies = await db.HorrorMovie.findAll({
+        where: {
+            title: {
+                [Op.iLike]:`%${req.body.search}%`
+            }
+        }
     });
+    console.log(horrorMovies)
     console.log(req.body.search);
     // if (req.body.search === db.HorrorMovie.findAll (HorrorMovie.title))
-    res.render('movie-page', {title: 'Movies', horrorMovies});
+    res.render('search-page', {title: 'Movies', horrorMovies});
 }));
 
 //IDEA FOR SCARE VALUE
