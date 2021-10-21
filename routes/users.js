@@ -207,11 +207,18 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   res.redirect('/movies')
 }));
 
-usersRouter.post('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
-  const { horrormovieid } = req.body
-  const watchlist = await db.Watchlist.findByPk(horrormovieid);
+usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
+  const {userId} = req.session.auth
+  const horrormovieid = parseInt(req.params.id, 10);
+  const watchlist = await db.Watchlist.findOne({
+    where: {
+      horrormovieid,
+      userid: userId,
+    }
+  });
   await watchlist.destroy();
-  res.redirect('/user/watchlist')
+  const newWatchlist = await db.Watchlist.findAll({where: { userid: userId}, include: db.HorrorMovie});
+  res.json({newWatchlist})
 }))
 
 module.exports = usersRouter;
