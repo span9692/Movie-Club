@@ -22,10 +22,10 @@ block content
     <!-- Add a movie description -->
     h3 Edit Your Review
     div
-        form(action=`/movies/${result.id}/edit` class='review-input' method='post')
+        form(action=`/movies/${result.HorrorMovie.id}/edit` class='review-input' method='post')
             label(for='review')
             textarea(type='text' name='review' placeholder=`${result.review}`)
-            input(type='hidden' name='horrormovieid' value=result.id)
+            input(type='hidden' name='reviewid' value=result.id)
             button(class='btn btn-primary' type='submit') Submit
     div(class='bigReviewBoxDiv')
         ul

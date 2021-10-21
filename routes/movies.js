@@ -57,19 +57,14 @@ moviesRouter.post('/movies/:movieid/edit/:reviewid', asyncHandler(async(req, res
   // Edit Review Posting Router
   moviesRouter.post('/movies/:movieid/edit', asyncHandler(async(req, res,next) => {
     const movieid= parseInt(req.params.movieid, 10);
-    const{reviewid} =req.params;
-    const { userId }=req.session.auth;
-    const {horrormovieid, review} = req.body;
-    const result = await db.HorrorMovie.findByPk(movieid, {
-        where: { id: movieid },
-        include: db.Review
-    });
-    const reviewPost = await db.Review.update(review,{
-        where: {
-            review: reviewid
-          }
-        });
-        res.render('movie-page', {title: 'Movies', result, reviewPost});
+    console.log('END ME');
+    console.log(req.params);
+    const {reviewid, review} = req.body;
+    const result = await db.Review.findByPk(reviewid);
+    await result.update({review:review});
+        // console.log(reviewPost);
+        // console.log(review);
+        res.redirect(`/movies/${movieid}`);
     }));
 //Reviews Delete Route
 
