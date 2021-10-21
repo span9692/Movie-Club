@@ -9,16 +9,6 @@ const { loginUser, logoutUser } = require("../auth");
 
 const usersRouter = express.Router();
 
-/* GET users listing. */
-
-usersRouter.get("/user/register", csrfProtection, (req, res) => {
-  const user = db.User.build();
-  res.render("user-register", {
-    title: "Register",
-    user,
-    csrfToken: req.csrfToken(),
-  });
-});
 
 ///VERIFICATION OF INFORMATION
 const userValidators = [
@@ -37,53 +27,63 @@ const userValidators = [
   .withMessage('Please provide a value for Email Address')
   .isLength({ max: 255 })
   .withMessage('Email Address must not be more than 255 characters long')
-    .isEmail()
-    .withMessage('Email Address is not a valid email')
-    .custom((value) => {
-      return db.User.findOne({ where: { email: value } })
-      .then((user) => {
-        if (user) {
-          return Promise.reject('The provided Email Address is already in use by another account');
-        }
-      });
-    }),
-    check('username')
+  .isEmail()
+  .withMessage('Email Address is not a valid email')
+  .custom((value) => {
+    return db.User.findOne({ where: { email: value } })
+    .then((user) => {
+      if (user) {
+        return Promise.reject('The provided Email Address is already in use by another account');
+      }
+    });
+  }),
+  check('username')
   .exists({ checkFalsy: true })
   .withMessage('Please provide a value for User Name')
   .isLength({ max: 30 })
   .withMessage('User Name must not be more than 30 characters long')
-    .custom((value) => {
-      return db.User.findOne({ where: { username: value } })
-      .then((user) => {
-        if (user) {
-          return Promise.reject('The provided User Name is already in use by another account');
-        }
-      });
-    }),
-    check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Password')
-    .isLength({ max: 50 })
-    .withMessage('Password must not be more than 50 characters long')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
-    .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
-    check('confirmpassword')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Confirm Password')
-    .isLength({ max: 50 })
-    .withMessage('Confirm Password must not be more than 50 characters long')
-    .custom((value, { req }) => {
-      if (value !== req.body.password) {
-        throw new Error('Confirm Password does not match Password');
+  .custom((value) => {
+    return db.User.findOne({ where: { username: value } })
+    .then((user) => {
+      if (user) {
+        return Promise.reject('The provided User Name is already in use by another account');
       }
-      return true;
-    }),
-  ];
+    });
+  }),
+  check('password')
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for Password')
+  .isLength({ max: 50 })
+  .withMessage('Password must not be more than 50 characters long')
+  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
+  .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+  check('confirmpassword')
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for Confirm Password')
+  .isLength({ max: 50 })
+  .withMessage('Confirm Password must not be more than 50 characters long')
+  .custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Confirm Password does not match Password');
+    }
+    return true;
+  }),
+];
 
-  usersRouter.post("/user/register", userValidators, asyncHandler(async (req, res) => {
-    // console.log(req.body);
-  const {
-    firstname,
+/* GET users listing. */
+
+usersRouter.get("/user/register", csrfProtection, (req, res) => {
+  const user = db.User.build();
+  res.render("user-register", {
+    title: "Register",
+    user,
+    csrfToken: req.csrfToken(),
+  });
+});
+
+  usersRouter.post("/user/register", csrfProtection, userValidators, asyncHandler(async (req, res) => {
+    const {
+      firstname,
     lastname,
     username,
     email,
@@ -112,26 +112,31 @@ const userValidators = [
       title: 'Register',
       user,
       errors,
-      // csrfToken: req.csrfToken(),
+      csrfToken: req.csrfToken(),
     });
   }
 }));
 
 
-usersRouter.get("/user/login", function (req, res, next) {
-  res.render("user-login", { title: "Login" });
-});
 
 const loginValidators = [
   check('email')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Email Address'),
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for Email Address'),
   check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Password'),
+  .exists({ checkFalsy: true })
+  .withMessage('Please provide a value for Password'),
 ];
 
-usersRouter.post('/user/login', loginValidators,
+usersRouter.get("/user/login", csrfProtection, function (req, res, next) {
+  res.render("user-login",
+  {
+    title: "Login",
+    csrfToken: req.csrfToken(),
+});
+});
+
+usersRouter.post('/user/login', loginValidators, csrfProtection,
   asyncHandler(async (req, res) => {
     const {
       email,
@@ -168,7 +173,7 @@ usersRouter.post('/user/login', loginValidators,
       title: 'Login',
       email,
       errors,
-      // csrfToken: req.csrfToken(),
+      csrfToken: req.csrfToken(),
     });
   }));
 
@@ -177,12 +182,19 @@ usersRouter.post("/user/logout", (req, res) => {
   res.redirect('/');
 });
 
-usersRouter.get('/user/watchlist', asyncHandler(async(req, res, next) => {
+usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async(req, res, next) => {
   const { userId } = req.session.auth
-  const horrorMovies = await db.Watchlist.findAll({where: {userid: userId}, include: db.HorrorMovie });
-  // console.log(horrorMovies)
-  // const watchlist = db.Watchlist.create({userid, horrormovieid});
-  res.render('watch-list', {title: 'User Movie Graveyard', horrorMovies})
+  const horrorMovies = await db.Watchlist.findAll(
+    {
+      where: {userid: userId},
+      include: db.HorrorMovie
+    });
+  res.render('watch-list',
+    {
+      title: 'User Movie Graveyard',
+      horrorMovies,
+      csrfToken: req.csrfToken(),
+    })
 }));
 
 usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
@@ -190,41 +202,9 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   const { userId } = req.session.auth
   const watchlist = await db.Watchlist.create({
     userid: userId,
-    horrormovieid
+    horrormovieid,
+    // csrfToken: req.csrfToken(),
   })
-
-  // res.end();
-  // await fetch('http://localhost:8080/movies', {
-  //   method: "POST",
-  //   headers: {'Content-Type': 'application/json'}
-  //   body:
-  //   }
-  // )//,
-  // .then((response) => response.body)
-  // console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
-  // {
-  // method: 'GET',
-  // headers: {
-  //     // 'Content-Type': 'application/x-www-form-urlencoded'
-  //     'Content-Type': 'application/json'
-  //   },
-  // body: JSON.stringify()
-  // })
-  // console.log(response)
-  // const response = await fetch('http://localhost:8080/movies')//,
-  //     // {
-  //     // method: 'GET',
-  //     // headers: {
-  //     //     // 'Content-Type': 'application/x-www-form-urlencoded'
-  //     //     'Content-Type': 'application/json'
-  //     //   },
-  //     // body: JSON.stringify()
-  //     // })
-  //     .then((x) => console.log(x.url))
-  //     console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
-  //     console.log(response)
-
-      // return response.json()
   res.redirect('/movies')
 }));
 
@@ -246,12 +226,4 @@ usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next)
   // res.redirect('/user/watchlist')
 }))
 
-
-
-//click on ADD WATCHLIST (small form with submit button)
-//watchlist post route, destruct id from req.body
-//find movie by id - validation, not needed
-//watchlist.create passing in userid and movieid
-//create a watchlist
-//watchlist.findAll(userId)
 module.exports = usersRouter;

@@ -27,7 +27,9 @@ block content
           td= watchlist.HorrorMovie.rating
           td= watchlist.HorrorMovie.scarelevel
           td
-            button(class='exhume' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard
-                //- form(action='/user/watchlist/:id/delete' method='post')
-                //-   input(type='hidden' name='horrormovieid' value=watchlist.id)
-                  button(type='submit' class='btn1' id='exhume') Remove Movie From Graveyard
+            div
+                form(action='/user/watchlist/:id/delete' method='post')
+                  input(type='hidden' name='_csrf' value=csrfToken)
+                  input(type='hidden' name='horrormovieid' value=watchlist.id)
+                  button(type='submit' class='exhume' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard
+
