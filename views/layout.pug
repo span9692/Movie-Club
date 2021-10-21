@@ -13,14 +13,14 @@ html
       p Hello
     div(class='header')
       a(href='/' class='lk1') Home
-      
+
       a(href='/' class='lk1') Logout
-      a(href='/movies' class='lk1') Movie Database
+      a(href='/movies' class='lk1') Movie Morgue
       a(href='/user/watchlist' class='lk1') My Movie Graveyard
 
     div
       form(action='/search' class='search-input' method='post')
           label(for='search')
           input(type='text' name='search' class='sb1')
-          button(class='btn1' type='submit') Search
+          button(class='search_btn' type='submit') Search
     block content

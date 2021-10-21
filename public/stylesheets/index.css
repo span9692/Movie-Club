@@ -1,5 +1,6 @@
 h1 {
     color: #555555;
+    text-decoration: underline;
 }
 .landing-h1 {
     display: flex;
@@ -11,7 +12,6 @@ h1 {
     justify-content: center;
 }
 .register-login-buttons {
-    width: 50%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
