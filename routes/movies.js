@@ -60,12 +60,16 @@ moviesRouter.post('/movies/:movieid/edit/:reviewid', asyncHandler(async(req, res
     const{reviewid} =req.params;
     const { userId }=req.session.auth;
     const {horrormovieid, review} = req.body;
+    const result = await db.HorrorMovie.findByPk(movieid, {
+        where: { id: movieid },
+        include: db.Review
+    });
     const reviewPost = await db.Review.update(review,{
         where: {
             review: reviewid
           }
         });
-        res.redirect(`/movies/${movieid}`);
+        res.render('movie-page', {title: 'Movies', result, reviewPost});
     }));
 //Reviews Delete Route
 
