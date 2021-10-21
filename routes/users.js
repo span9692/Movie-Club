@@ -203,7 +203,6 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   const watchlist = await db.Watchlist.create({
     userid: userId,
     horrormovieid,
-    // csrfToken: req.csrfToken(),
   })
   res.redirect('/movies')
 }));
