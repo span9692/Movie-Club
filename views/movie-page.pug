@@ -1,5 +1,6 @@
 extends layout.pug
-
+append head
+    script(src='/javascripts/script.js' type='module' defer)
 block content
     h1= result.title
     div
@@ -15,12 +16,14 @@ block content
     <!-- Add a photo here later-->
     //- import url from "images/1.jpq"
     img(src=`/images/movie${result.id}.jpg` style='width:200px')
+    div
+        p(class='score')
 
     p
-            div(class='buttons')
-    button(id='upvote') upvote
+    div(class='buttons')
+        button(id='upvote') upvote
         p(id='up')
-    button(id='downvote') downvote
+        button(id='downvote') downvote
         p(id='down')
     <!-- Add a movie description -->
     h3 Write a Review
