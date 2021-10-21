@@ -1,4 +1,5 @@
 const express = require("express");
+const fetch = require("isomorphic-fetch")
 
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
@@ -191,13 +192,40 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
     userid: userId,
     horrormovieid
   })
-  // res.redirect('/movies')
-  const response = await fetch('/movies', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  })
+
+  // res.end();
+  // await fetch('http://localhost:8080/movies', {
+  //   method: "POST",
+  //   headers: {'Content-Type': 'application/json'}
+  //   body:
+  //   }
+  // )//,
+  // .then((response) => response.body)
+  // console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
+  // {
+  // method: 'GET',
+  // headers: {
+  //     // 'Content-Type': 'application/x-www-form-urlencoded'
+  //     'Content-Type': 'application/json'
+  //   },
+  // body: JSON.stringify()
+  // })
+  // console.log(response)
+  // const response = await fetch('http://localhost:8080/movies')//,
+  //     // {
+  //     // method: 'GET',
+  //     // headers: {
+  //     //     // 'Content-Type': 'application/x-www-form-urlencoded'
+  //     //     'Content-Type': 'application/json'
+  //     //   },
+  //     // body: JSON.stringify()
+  //     // })
+  //     .then((x) => console.log(x.url))
+  //     console.log('THIS IS THE RESPONSE: ~~~~~~~~~~')
+  //     console.log(response)
+
+      // return response.json()
+  res.redirect('/movies')
 }));
 
 usersRouter.post('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {

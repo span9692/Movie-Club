@@ -1,5 +1,8 @@
 extends layout.pug
 
+//- append head
+//-   script(src='/javascripts/script.js' type='module' defer)
+
 block content
   div(class='movie-lib-div')
     h1 Movie Morgue
@@ -26,8 +29,4 @@ block content
             div
                 form(action='/user/watchlist' method='post')
                   input(type='hidden' name='horrormovieid' value=horrorMovie.id)
-
-                  
-
-                  button(type='submit' class='btn1') Add Movie To Graveyard
-
+                  button(type='submit' class='btn1' id=`movie_${horrorMovie.id}`) Add Movie To Graveyard
