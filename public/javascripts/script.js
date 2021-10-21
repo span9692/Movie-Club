@@ -1,23 +1,6 @@
-    // let countVotes=0;
-    // let score=document.querySelector('.score');
-    //  score.innerText=countVotes;
+const countVotes = 0;
 
-    // const upVoteButton = document.querySelector('#upvote')
-
-    // const downVoteButton = document.querySelector('#downvote')
-
-    // upVoteButton.addEventListener('click', () => {
-    //     document.querySelector('.score').innerText++;
-    //     localStorage.setItem('score', countVotes);
-    // })
-
-    // downVoteButton.addEventListener('click', () => {
-    //     document.querySelector('.score').innerText--;
-    // })
-
-    const countVotes = 0;
-
-let  score = document.querySelector('.score')
+let score = document.querySelector('.score')
 score.innerText = countVotes;
 
 let upVoteButton = document.querySelector('#upvote');
@@ -29,6 +12,7 @@ let downVoteButton = document.querySelector('#downvote');
 downVoteButton.addEventListener('click', (e) => {
     score.innerText--
 })
+
 
 
 // let addToWatchlist = document.querySelectorAll('.btn1')
