@@ -12,7 +12,9 @@ a {
 
   .header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-end;
+      /* justify-content: flex-end; */
   }
 
 .sb1 {
