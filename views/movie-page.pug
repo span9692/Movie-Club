@@ -32,11 +32,13 @@ block content
             each userReview in result.Reviews
                 div(class='smallReviewBoxDiv')
                     li= userReview.review
-                        form(action='movies/:movieid/edit' class='review-input' method='put')
+                        form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
                             label(for='review')
+                            input(type='hidden' name='reviewid' value=userReview.id)
                             input(type='hidden' name='horrormovieid' value=result.id)
                             button(class='btn btn-primary' type='submit') Edit Review
-                        form(action='/movies/:movieid/delete' class='review-input' method='post')
+                        form(action=`/movies/${result.id}/delete` class='review-input' method='post')
                             label(for='review')
+                            input(type='hidden' name='reviewid' value=userReview.id)
                             input(type='hidden' name='horrormovieid' value=result.id)
                             button(class='btn btn-primary' type='submit') Delete Review
