@@ -23,6 +23,7 @@ block content
     h3 Edit Your Review
     div
         form(action=`/movies/${result.HorrorMovie.id}/edit` class='review-input' method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
             label(for='review')
             textarea(type='text' name='review' placeholder=`${result.review}`)
             input(type='hidden' name='reviewid' value=result.id)
