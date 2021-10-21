@@ -1,6 +1,10 @@
 extends layout.pug
-//- append head
-//-     script(src='/javascripts/script.js' type='module' defer)
+head
+    block head
+    link(rel='stylesheet' href='/stylesheets/layout.css')
+    link(rel='stylesheet' href='/stylesheets/index.css')
+    append head
+        script(src='/javascripts/script.js' type='module' defer)
 block content
     h1= result.title
     div
@@ -13,8 +17,8 @@ block content
                   input(type='hidden' name='horrormovieid' value=result.id)
                   button(type='submit' class='btn btn-primary') Add Movie To Graveyard
 
-    <!-- Add a photo here later-->
-    //- import url from "images/1.jpq"
+    <!-- IMAGE-->
+
     img(src=`/images/movie${result.id}.jpg` style='width:200px')
     div
         p(class='score')
