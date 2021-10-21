@@ -225,7 +225,7 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
   //     console.log(response)
 
       // return response.json()
-  // res.redirect('/movies')
+  res.redirect('/movies')
 }));
 
 usersRouter.post('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {

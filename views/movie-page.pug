@@ -13,7 +13,10 @@ block content
                   button(type='submit' class='btn btn-primary') Add Movie To Graveyard
 
     <!-- Add a photo here later-->
-    p IMAGE INCOMING
+    //- import url from "images/1.jpq"
+    img(src=`/images/movie${result.id}.jpg` style='width:200px')
+
+    p
             div(class='buttons')
     button(id='upvote') upvote
         p(id='up')
