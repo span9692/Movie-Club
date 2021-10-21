@@ -210,20 +210,16 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
 
 usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
   const {userId} = req.session.auth
-  console.log(userId)
   const horrormovieid = parseInt(req.params.id, 10);
-  console.log(horrormovieid)
   const watchlist = await db.Watchlist.findOne({
     where: {
       horrormovieid,
       userid: userId,
     }
   });
-  console.log(watchlist)
   await watchlist.destroy();
   const newWatchlist = await db.Watchlist.findAll({where: { userid: userId}, include: db.HorrorMovie});
   res.json({newWatchlist})
-  // res.redirect('/user/watchlist')
 }))
 
 module.exports = usersRouter;
