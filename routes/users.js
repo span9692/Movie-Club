@@ -3,7 +3,7 @@ const { check, validationResult } = require('express-validator');
 const db = require("../db/models");
 const bcrypt = require('bcryptjs');
 const { csrfProtection, asyncHandler } = require('./utils');
-const { loginUser, logoutUser } = require("../auth");
+const { loginUser, logoutUser, requireAuth } = require("../auth");
 
 const usersRouter = express.Router();
 
@@ -175,7 +175,7 @@ usersRouter.post('/user/login', loginValidators, csrfProtection,
 
 usersRouter.post("/user/logout", (req, res) => {
   logoutUser(req, res);
-  return res.redirect('/user/login');
+  res.redirect('/user/login');
 });
 
 usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -193,7 +193,7 @@ usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async(req, res, 
     })
 }));
 
-usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
+usersRouter.post('/user/watchlist', requireAuth, asyncHandler(async(req, res, next) => {
   const { horrormovieid } = req.body;
   const { userId } = req.session.auth
   const watchlist = await db.Watchlist.create({

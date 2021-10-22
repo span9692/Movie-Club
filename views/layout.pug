@@ -12,10 +12,11 @@ html
     div
       if locals.authenticated
         p= `Welcome ${user.firstname}`
+        form(class='logout-form' action='/user/logout' method='post')
+            button(class='logout-button') Logout
     div(class='header')
       if locals.authenticated
         a(href='/' class='lk1') Home
-        a(href='/' class='lk1') Logout
         a(href='/movies' class='lk1') Movie Morgue
         a(href='/user/watchlist' class='lk1') My Movie Graveyard
         form(action='/search' class='search-input' method='post')
@@ -25,6 +26,7 @@ html
           button(class='search_btn' type='submit') Search
       else
         a(href='/' class='lk1') Home
+        a(href='/user/login' class='lk1') Login
         a(href='/movies' class='lk1') Movie Morgue
         form(action='/search' class='search-input' method='post')
           input(type='hidden' name='_csrf' value=csrfToken)

@@ -1,4 +1,5 @@
 const express = require("express");
+const { requireAuth } = require('../auth')
 
 const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require('./utils');
@@ -30,7 +31,7 @@ moviesRouter.get('/movies/:movieid(\\d+)', csrfProtection, asyncHandler(async (r
         });
 }));
 // Reviews Post Route
-moviesRouter.post('/movies/:movieid', asyncHandler(async (req, res, next) => {
+moviesRouter.post('/movies/:movieid', requireAuth, asyncHandler(async (req, res, next) => {
     const movieid = parseInt(req.params.movieid, 10);
     const { userId } = req.session.auth;
     const { horrormovieid, review } = req.body;
@@ -44,7 +45,7 @@ moviesRouter.post('/movies/:movieid', asyncHandler(async (req, res, next) => {
 }))
 
 // Reviews Edit Route
-moviesRouter.post('/movies/:movieid/edit/:reviewid', csrfProtection, asyncHandler(async (req, res, next) => {
+moviesRouter.post('/movies/:movieid/edit/:reviewid', requireAuth, asyncHandler(async (req, res, next) => {
     const { reviewid } = req.params;
     const movieid = parseInt(req.params.movieid, 10);
     const result = await db.Review.findByPk(reviewid, {
@@ -55,7 +56,7 @@ moviesRouter.post('/movies/:movieid/edit/:reviewid', csrfProtection, asyncHandle
             title: 'Movies',
             result,
             reviewid,
-            csrfToken: req.csrfToken(),
+            // csrfToken: req.csrfToken(),
         });
 
 }))
@@ -71,7 +72,7 @@ moviesRouter.post('/movies/:movieid/edit', asyncHandler(async (req, res, next) =
 
 //Reviews Delete Route
 
-moviesRouter.post('/movies/:movieid/delete', asyncHandler(async (req, res, next) => {
+moviesRouter.post('/movies/:movieid/delete', requireAuth, asyncHandler(async (req, res, next) => {
     const movieid = parseInt(req.params.movieid, 10);
     const { reviewid } = req.body;
     const reviewDestroy = await db.Review.findByPk(reviewid);
