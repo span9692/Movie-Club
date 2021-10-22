@@ -5,28 +5,35 @@ append head
     link(rel='stylesheet' href='/stylesheets/index.css')
     script(src='/javascripts/script.js' type='module' defer)
 block content
-    h1= result.title
-    div
+    h1(class='movie')= result.title
+
+    form(action='/user/watchlist' method='post')
+                  input(type='hidden' name='horrormovieid' value=result.id)
+                  button(type='submit' class='btn btn-primary') Add Movie To Graveyard
+    p
+    <!-- IMAGE-->
+    //-     img(src=`/images/movie${result.id}.jpg` style='width:200px')
+    //- div
+    div(class='movieinfo')
         h3= `Directed By: ${result.director}`
         h3= `Scare Level: ${result.scarelevel}`
         h3= `Rating: ${result.rating}`
         h3= `Release Date: ${result.releasedate}`
         h3= `Subgenre: ${result.subGenre}`
-    form(action='/user/watchlist' method='post')
-                  input(type='hidden' name='horrormovieid' value=result.id)
-                  button(type='submit' class='btn btn-primary') Add Movie To Graveyard
 
     <!-- IMAGE-->
 
-    img(src=`/images/movie${result.id}.jpg` style='width:200px')
+    div(class='movie')
+        img(src=`/images/movie${result.id}.jpg` style='width:200px')
     div
-        p(class='score')= `Likes: ${votes}`
+        p(class='movie')= `Likes: ${votes}`
     if locals.authenticated
-        div(class='buttons')
+        div(class='movie')
             button(id=`upvote-${result.id}-true` class='upvotebutton') Like
             p(id='up')
     <!-- Add a movie description -->
-    h3 Write a Review
+    div(class='movie')
+        h3 Write a Review
     div
         form(action=`/movies/${result.id}` class='review-input' method='post')
             label(for='review')

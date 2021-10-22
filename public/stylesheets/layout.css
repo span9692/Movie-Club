@@ -59,6 +59,15 @@ h1 {
     background-color: black;
 }
 
+.movie {
+    display: flex;
+    justify-content: center;
+}
+
+.movieinfo {
+    display: flex;
+    justify-content: space-around;
+}
 .author {
     display: flex;
     height: 50px;
