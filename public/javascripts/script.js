@@ -1,28 +1,24 @@
-const countVotes = 0;
+
 
 let score = document.querySelector('.score')
-score.innerText = countVotes;
 
-let upVoteButton = document.querySelector('#upvote');
+let upVoteButton = document.querySelector('.upvotebutton');
 
 upVoteButton.addEventListener('click', async (e) => {
     e.preventDefault();
-
-    await fetch(`http://localhost:8080/movies/${movieid}`, {
+    const horrormovieid = e.target.id.split('-')[1]
+    const upvotebody = {
+        opinion: true
+    }
+    
+    await fetch(`/movies/${horrormovieid}/vote`, {
         headers: {'Content-Type': 'application/json'},
         method: 'POST',
-        body: {
-            horrormovieid,
-            userid,
-            opinion: true
-        }
+        body: JSON.stringify(upvotebody)
     })
     .then(response => response.json())
-    score.innerText++
+    score.innerText = countVotes;
 })
 
-let downVoteButton = document.querySelector('#downvote');
-downVoteButton.addEventListener('click', (e) => {
-    score.innerText--
-})
+
 

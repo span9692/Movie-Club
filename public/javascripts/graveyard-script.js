@@ -4,7 +4,7 @@ exhumeTheBody.forEach((button) => {
     button.addEventListener('click', async(e) => {
         e.preventDefault()
 
-        await fetch(`http://localhost:8080/user/watchlist/${e.target.id}/delete`, {
+        await fetch(`/user/watchlist/${e.target.id}/delete`, {
             headers: {'Content-Type': 'application/json'},
         })
         .then(response => response.json())
