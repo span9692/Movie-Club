@@ -18,7 +18,6 @@ moviesRouter.get('/movies', csrfProtection, asyncHandler(async (req, res, next) 
 
 moviesRouter.get('/movies/:movieid(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const movieid = parseInt(req.params.movieid, 10);
-
     const result = await db.HorrorMovie.findByPk(movieid, {
         where: { id: movieid },
         include: db.Review
@@ -35,6 +34,16 @@ moviesRouter.post('/movies/:movieid', requireAuth, asyncHandler(async (req, res,
     const movieid = parseInt(req.params.movieid, 10);
     const { userId } = req.session.auth;
     const { horrormovieid, review } = req.body;
+    const upVoteOpinions = await db.Vote.findAll({
+        where: {
+            opinion: true
+        }
+    })
+    const downVoteOpinions = await db.Vote.findAll({
+        where: {
+            opinion: false
+        }
+    })
     const reviewPost = await db.Review.create({
         review,
         userid: userId,
