@@ -20,12 +20,11 @@ block content
 
     img(src=`/images/movie${result.id}.jpg` style='width:200px')
     div
-        p(class='score')= votes
-
-    p
-    div(class='buttons')
-        button(id=`upvote-${result.id}-true` class='upvotebutton') Like
-        p(id='up')
+        p(class='score')= `Likes: ${votes}`
+    if locals.authenticated
+        div(class='buttons')
+            button(id=`upvote-${result.id}-true` class='upvotebutton') Like
+            p(id='up')
     <!-- Add a movie description -->
     h3 Write a Review
     div
