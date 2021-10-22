@@ -25,8 +25,8 @@ block content
 
     div(class='movie')
         img(src=`/images/movie${result.id}.jpg` style='width:200px')
-    div
-        p(class='movie')= `Likes: ${votes}`
+    div(class='movie')
+        p(class='score')= `Likes: ${votes}`
     if locals.authenticated
         div(class='movie')
             button(id=`upvote-${result.id}-true` class='upvotebutton') Like
