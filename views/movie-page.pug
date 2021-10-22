@@ -12,21 +12,25 @@ block content
                   button(type='submit' class='btn btn-primary') Add Movie To Graveyard
     p
     <!-- IMAGE-->
-    div(class='movie')
-        img(src=`/images/movie${result.id}.jpg` style='width:200px')
-    div
+    //-     img(src=`/images/movie${result.id}.jpg` style='width:200px')
+    //- div
     div(class='movieinfo')
         h3= `Directed By: ${result.director}`
         h3= `Scare Level: ${result.scarelevel}`
         h3= `Rating: ${result.rating}`
         h3= `Release Date: ${result.releasedate}`
         h3= `Subgenre: ${result.subGenre}`
-        p(class='score')= votes
 
-    p
+    <!-- IMAGE-->
+
     div(class='movie')
-        button(id=`upvote-${result.id}-true` class='upvotebutton') Like
-        p(id='up')
+        img(src=`/images/movie${result.id}.jpg` style='width:200px')
+    div
+        p(class='movie')= `Likes: ${votes}`
+    if locals.authenticated
+        div(class='movie')
+            button(id=`upvote-${result.id}-true` class='upvotebutton') Like
+            p(id='up')
     <!-- Add a movie description -->
     div(class='movie')
         h3 Write a Review
