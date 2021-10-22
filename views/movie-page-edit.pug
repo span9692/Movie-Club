@@ -25,7 +25,7 @@ block content
         form(action=`/movies/${result.HorrorMovie.id}/edit` class='review-input' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             label(for='review')
-            textarea(type='text' name='review' placeholder=`${result.review}`)
+            textarea(type='text' name='review')= `${result.review}`
             input(type='hidden' name='reviewid' value=result.id)
             button(class='btn btn-primary' type='submit') Submit
     div(class='bigReviewBoxDiv')

@@ -1,26 +1,29 @@
 let exhumeTheBody = document.querySelectorAll('.exhume')
-console.log(exhumeTheBody)
 
 exhumeTheBody.forEach((button) => {
     button.addEventListener('click', async(e) => {
-        console.log(e.target.id)
         e.preventDefault()
 
-        let resData = await fetch(`http://localhost:8080/user/watchlist/${e.target.id}/delete`, {
+        await fetch(`http://localhost:8080/user/watchlist/${e.target.id}/delete`, {
             headers: {'Content-Type': 'application/json'},
         })
         .then(response => response.json())
 
-        console.log(resData) // resData contains an array of the remaining movies in the watchlist
+        let body = document.querySelectorAll('tr');
 
-        console.log('~~~~~~')
-        // let tr = this.closest("tr");
-        // console.log(tr)
-        // tr.remove();
-        let body = document.querySelector('tr');
-        // let bodyRows = body.children
-        // let update = body.slice.call(elements, 1);
-        console.log(body)
+        body.forEach((element => {
+            let td = element.querySelectorAll('td');
+
+            if(td.length > 0) { // ignores the header row
+                let info = td[5] // column of the button
+                let div = info.querySelector('div')
+                let form = div.querySelector('form')
+                let button = form.querySelector('button')
+                if (button.id === e.target.id) {
+                    element.remove()
+                }
+            }
+        }))
         // console.log(update)
         // body[1].remove()
 

@@ -6,7 +6,7 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 const searchRouter = express.Router();
 
-searchRouter.post('/search', csrfProtection, asyncHandler(async(req, res, next) => {
+searchRouter.post('/search', asyncHandler(async(req, res, next) => {
     const {title, director, releasedate, rating, scarelevel, subGenre}= req.body;
     const movieSearch = await db.HorrorMovie.findAll({
         where: {
@@ -21,7 +21,7 @@ searchRouter.post('/search', csrfProtection, asyncHandler(async(req, res, next) 
     {
         title: 'Movies',
         movieSearch,
-        csrfToken: req.csrfToken(),
+        // csrfToken: req.csrfToken(),
     });
 }));
 

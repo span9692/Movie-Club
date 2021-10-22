@@ -10,5 +10,8 @@ block content
   h1(class='landing-h1')= title
     h2(class='landing-h2') Your Personal Horror Movie Collection
     div(class='register-login-buttons')
+      if locals.authenticated
+        a(href='/movies' class='lk1') Enter
+      else
         a(href='/user/register' class='lk1') Get Started
         a(href='/user/login' class='lk1') Login

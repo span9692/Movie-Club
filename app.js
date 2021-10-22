@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const moviesRouter = require('./routes/movies');
 const { sessionSecret } = require('./config')
+const { userRestore } = require('./auth')
 
 const searchRouter =require('./routes/search');
 
@@ -17,7 +18,7 @@ const searchRouter =require('./routes/search');
 const app = express();
 
 // view engine setup
-app.set('view engine', 'pug');
+app.set('view engine', 'pug'); 
 
 ///adding a comment
 //adding one more comment
@@ -40,6 +41,7 @@ app.use(
   })
   );
 
+  app.use(userRestore);
   app.use(moviesRouter);
   app.use(usersRouter);
   app.use(searchRouter);

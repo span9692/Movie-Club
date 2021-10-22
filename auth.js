@@ -25,11 +25,12 @@ const requireAuth = (req, res, next) => {
         return res.redirect('/user/login');
     }
     //If they are authenticated, invokes the next middleware, either login or restore.
-    return next();
+    next();
 }
 
 // Function to let user preserve a login session after navigating away.
-const userResto = async (req, res, next) => {
+const userRestore = async (req, res, next) => {
+    console.log(req.session)
     // if the user is authenticated, we destructure the userId out of the object.
     if (req.session.auth) {
         const { userId } = req.session.auth;
@@ -52,6 +53,7 @@ const userResto = async (req, res, next) => {
         res.locals.authenticated=false;
         next();
     }
+    return
 }
 
 
@@ -60,5 +62,5 @@ module.exports= {
 loginUser,
 logoutUser,
 requireAuth,
-userResto
+userRestore
 }

@@ -49,3 +49,12 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
+.logout-form {
+    display: block;
+}
+
+.logout-button {
+    color: white;
+    background-color: black;
+}

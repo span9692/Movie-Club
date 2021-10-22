@@ -21,7 +21,7 @@ block content
     tbody
       each watchlist in horrorMovies
         tr
-          td= watchlist.HorrorMovie.title
+          td: a(href=`/movies/${watchlist.HorrorMovie.id}`) #{watchlist.HorrorMovie.title}
           td= watchlist.HorrorMovie.director
           td= watchlist.HorrorMovie.releasedate
           td= watchlist.HorrorMovie.rating
@@ -32,4 +32,3 @@ block content
                   input(type='hidden' name='_csrf' value=csrfToken)
                   input(type='hidden' name='horrormovieid' value=watchlist.id)
                   button(type='submit' class='exhume' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard
-
