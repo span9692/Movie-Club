@@ -204,7 +204,8 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
     userid: userId,
     horrormovieid,
   })
-  res.redirect('/movies')
+  res.redirect(`/movies`)
+  // res.redirect(`/movies/${horrormovieid}`)
 }));
 
 usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
