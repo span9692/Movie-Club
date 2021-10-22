@@ -25,3 +25,9 @@ block content
     p: a(href='/user/login' class='lk1') Already have an account?
     div
       a(href='/' class='lk1') Cancel
+
+  form(action='/user/login' method='post')
+    input(type='hidden' name='_csrf' value=csrfToken)
+    input(type='hidden' name='email' value='seanhpan@gmail.comm')
+    input(type='hidden' name='password' value='Reaper1!')
+    button(type='submit') Demo User

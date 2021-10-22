@@ -12,14 +12,20 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
     User.associate = function(models) {
       User.hasMany(models.Review, {
-        foreignKey:'userid'
+        foreignKey:'userid',
+        onDelete: 'cascade',
+        hooks: true
       });
       //might need to switch to hasmany if run into allowedvotes problems.
-      User.hasOne(models.Vote, {
-        foreignKey:'userid'
+      User.hasMany(models.Vote, {
+        foreignKey:'userid',
+        onDelete: 'cascade',
+        hooks: true
       });
       User.hasOne(models.Watchlist, {
-        foreignKey:'userid'
+        foreignKey:'userid',
+        onDelete: 'cascade',
+        hooks: true
       });
   };
   return User;

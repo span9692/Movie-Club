@@ -9,15 +9,21 @@ module.exports = (sequelize, DataTypes) => {
     scarelevel: DataTypes.INTEGER,
     subGenre: DataTypes.STRING,
   }, {});
-  HorrorMovie.associate = function(models) {
+  HorrorMovie.associate = function (models) {
     HorrorMovie.hasMany(models.Review, {
-      foreignKey:'horrormovieid'
+      foreignKey: 'horrormovieid',
+      onDelete: 'cascade',
+      hooks: true
     });
     HorrorMovie.hasMany(models.Vote, {
-      foreignKey:'horrormovieid'
+      foreignKey: 'horrormovieid',
+      onDelete: 'cascade',
+      hooks: true
     });
     HorrorMovie.hasMany(models.Watchlist, {
-      foreignKey:'horrormovieid'
+      foreignKey: 'horrormovieid',
+      onDelete: 'cascade',
+      hooks: true
     });
   };
   return HorrorMovie;
