@@ -18,15 +18,22 @@ moviesRouter.get('/movies', csrfProtection, asyncHandler(async (req, res, next) 
 
 moviesRouter.get('/movies/:movieid(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const movieid = parseInt(req.params.movieid, 10);
-
     const result = await db.HorrorMovie.findByPk(movieid, {
         where: { id: movieid },
         include: db.Review
     });
+    const vote = await db.Vote.findAll({
+        where: {
+            horrormovieid: movieid,
+        }
+    })
+    const votes = vote.length
+    
     res.render('movie-page',
         {
             title: 'Movies',
             result,
+            votes: votes,
             csrfToken: req.csrfToken(),
         });
 }));
@@ -43,6 +50,55 @@ moviesRouter.post('/movies/:movieid', requireAuth, asyncHandler(async (req, res,
     res.redirect(`/movies/${movieid}`);
 
 }))
+
+// Votes Post Route
+moviesRouter.post('/movies/:movieid/vote', requireAuth, asyncHandler(async (req, res, next) => {
+    const movieid = parseInt(req.params.movieid, 10);
+    const { userId } = req.session.auth;
+    const { horrormovieid, opinion } = req.body;
+
+    // const downvoteopinions = await db.Vote.findAll({
+    //     where: {
+    //         opinion: false,
+    //         horrormovieid: movieid
+    //     }
+    // })
+    const vote = await db.Vote.findOne({
+        where: {
+            horrormovieid: movieid,
+            userid: userId,
+            // opinion: true
+        }
+    })
+    
+
+    if(vote) {
+        await vote.destroy()
+    } else {
+        await db.Vote.create({
+            userid: userId,
+            horrormovieid: movieid,
+            // opinion: true
+        })
+    }
+    const upvoteopinions = await db.Vote.findAll({
+        where: {
+            // opinion: true,
+            horrormovieid: movieid
+        }
+    })
+    const votes = upvoteopinions.length
+    
+    res.json({votes: votes});
+
+}))
+
+// query for entry on vote table with horrormovie id  and user id
+// if exists change to reflect new input if doesnt exist create to reflect input
+// upvote array length - downvote array length
+// send back as json 
+// make sure response is 200 
+// edit score using dom manipulation
 
 // Reviews Edit Route
 moviesRouter.post('/movies/:movieid/edit/:reviewid', requireAuth, asyncHandler(async (req, res, next) => {
