@@ -1,24 +1,19 @@
 extends layout.pug
 
 block content
-    h1= result.title
+    h1= result.HorrorMovie.title
     div
-        h3= `Directed By: ${result.director}`
-        h3= `Scare Level: ${result.scarelevel}`
-        h3= `Rating: ${result.rating}`
-        h3= `Release Date: ${result.releasedate}`
-        h3= `Subgenre: ${result.subGenre}`
+        h3= `Directed By: ${result.HorrorMovie.director}`
+        h3= `Scare Level: ${result.HorrorMovie.scarelevel}`
+        h3= `Rating: ${result.HorrorMovie.rating}`
+        h3= `Release Date: ${result.HorrorMovie.releasedate}`
+        h3= `Subgenre: ${result.HorrorMovie.subGenre}`
     form(action='/user/watchlist' method='post')
                   input(type='hidden' name='horrormovieid' value=result.id)
                   button(type='submit' class='btn btn-primary') Add Movie To Graveyard
 
     <!-- Add a photo here later-->
-    p IMAGE INCOMING
-            div(class='buttons')
-    button(id='upvote') upvote
-        p(id='up')
-    button(id='downvote') downvote
-        p(id='down')
+    img(src=`/images/movie${result.HorrorMovie.id}.jpg` style='width:200px')
     <!-- Add a movie description -->
     h3 Edit Your Review
     div
