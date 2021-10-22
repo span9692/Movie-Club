@@ -1,9 +1,7 @@
 const express = require("express");
-const fetch = require("isomorphic-fetch")
-
 const { check, validationResult } = require('express-validator');
-const bcrypt = require('bcryptjs');
 const db = require("../db/models");
+const bcrypt = require('bcryptjs');
 const { csrfProtection, asyncHandler } = require('./utils');
 const { loginUser, logoutUser } = require("../auth");
 
@@ -116,8 +114,6 @@ usersRouter.get("/user/register", csrfProtection, (req, res) => {
     });
   }
 }));
-
-
 
 const loginValidators = [
   check('email')

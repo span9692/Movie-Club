@@ -29,7 +29,7 @@ const requireAuth = (req, res, next) => {
 }
 
 // Function to let user preserve a login session after navigating away.
-const userResto = async (req, res, next) => {
+const userRestore = async (req, res, next) => {
     // if the user is authenticated, we destructure the userId out of the object.
     if (req.session.auth) {
         const { userId } = req.session.auth;
@@ -60,5 +60,5 @@ module.exports= {
 loginUser,
 logoutUser,
 requireAuth,
-userResto
+userRestore
 }
