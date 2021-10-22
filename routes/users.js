@@ -103,7 +103,7 @@ usersRouter.get("/user/register", csrfProtection, (req, res) => {
     user.hashedpassword = hashedPassword;
     await user.save();
     loginUser(req, res, user);
-    res.redirect('/');
+    return res.redirect('/');
   } else {
     const errors = validatorErrors.array().map((error) => error.msg);
     res.render('user-register', {
@@ -175,7 +175,7 @@ usersRouter.post('/user/login', loginValidators, csrfProtection,
 
 usersRouter.post("/user/logout", (req, res) => {
   logoutUser(req, res);
-  res.redirect('/');
+  return res.redirect('/user/login');
 });
 
 usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -200,7 +200,7 @@ usersRouter.post('/user/watchlist', asyncHandler(async(req, res, next) => {
     userid: userId,
     horrormovieid,
   })
-  res.redirect(`/movies`)
+  return res.redirect(`/movies`)
   // res.redirect(`/movies/${horrormovieid}`)
 }));
 
@@ -215,7 +215,7 @@ usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next)
   });
   await watchlist.destroy();
   const newWatchlist = await db.Watchlist.findAll({where: { userid: userId}, include: db.HorrorMovie});
-  res.json({newWatchlist})
+  return res.json({newWatchlist})
 }))
 
 module.exports = usersRouter;

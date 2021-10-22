@@ -10,18 +10,25 @@ html
   body
 
     div
-      p Hello
+      if locals.authenticated
+        p= `Welcome ${user.firstname}`
     div(class='header')
-      a(href='/' class='lk1') Home
-
-      a(href='/' class='lk1') Logout
-      a(href='/movies' class='lk1') Movie Morgue
-      a(href='/user/watchlist' class='lk1') My Movie Graveyard
-
-    div
-      form(action='/search' class='search-input' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        label(for='search')
-        input(type='text' name='search' class='sb1')
-        button(class='search_btn' type='submit') Search
+      if locals.authenticated
+        a(href='/' class='lk1') Home
+        a(href='/' class='lk1') Logout
+        a(href='/movies' class='lk1') Movie Morgue
+        a(href='/user/watchlist' class='lk1') My Movie Graveyard
+        form(action='/search' class='search-input' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          label(for='search')
+          input(type='text' name='search' class='sb1')
+          button(class='search_btn' type='submit') Search
+      else
+        a(href='/' class='lk1') Home
+        a(href='/movies' class='lk1') Movie Morgue
+        form(action='/search' class='search-input' method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          label(for='search')
+          input(type='text' name='search' class='sb1')
+          button(class='search_btn' type='submit') Search
     block content
