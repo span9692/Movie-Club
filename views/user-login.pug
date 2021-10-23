@@ -10,7 +10,7 @@ block content
     +field('Password ', 'password', null, 'password')
     div(class='py-4')
       button(type='submit' class='login-button') Login
-      
+
   form(action='/user/login' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     input(type='hidden' name='email' value='jrr@jrr.com')
