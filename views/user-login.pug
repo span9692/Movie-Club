@@ -9,7 +9,7 @@ block content
     +field('Email Address', 'email', email)
     +field('Password', 'password', null, 'password')
     div(class='py-4')
-      button(type='submit' class='btn-primary') Login
+      button(type='submit' class='btn-primary logout-button') Login
       div
         a(href='/user/register' class='btn-primary') Need to sign up for an account?
       div
@@ -19,4 +19,4 @@ block content
     input(type='hidden' name='_csrf' value=csrfToken)
     input(type='hidden' name='email' value='jrr@jrr.com')
     input(type='hidden' name='password' value='Reaper1!')
-    button(type='submit') Demo User
+    button(type='submit logout-button') Demo User

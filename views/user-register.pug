@@ -20,7 +20,7 @@ block content
     +field('Password', 'password', '', 'password')
     +field('Confirm Password', 'confirmpassword', '', 'password')
     div(class='py-4')
-      button(type='submit' class='btn btn-primary') Register
+      button(type='submit' class='btn btn-primary logout-button') Register
   div
     p: a(href='/user/login' class='lk1') Already have an account?
     div
@@ -30,4 +30,4 @@ block content
     input(type='hidden' name='_csrf' value=csrfToken)
     input(type='hidden' name='email' value='jrr@jrr.com')
     input(type='hidden' name='password' value='Reaper1!')
-    button(type='submit') Demo User
+    button(type='submit logout-button') Demo User

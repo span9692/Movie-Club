@@ -7,23 +7,24 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/layout.css')
 
-  body
+  body(class='bodycontainer')
 
-    div
-      if locals.authenticated
-        p= `Welcome ${user.firstname}`
-        form(class='logout-form' action='/user/logout' method='post')
-            button(class='logout-button') Logout
     div(class='header')
+      div(class='logout')
+        if locals.authenticated
+          p= `Welcome ${user.firstname}`
+          form(class='logout-form' action='/user/logout' method='post')
+              button(class='logout-button') Logout
       if locals.authenticated
         a(href='/' class='lk1') Home
         a(href='/movies' class='lk1') Movie Morgue
         a(href='/user/watchlist' class='lk1') My Movie Graveyard
-        form(action='/search' class='search-input' method='post')
-          input(type='hidden' name='_csrf' value=csrfToken)
-          label(for='search')
-          input(type='text' name='search' class='sb1')
-          button(class='search_btn' type='submit') Search
+        div(class='search')
+            form(action='/search' class='search-input' method='post')
+              input(type='hidden' name='_csrf' value=csrfToken)
+              label(for='search')
+              input(type='text' name='search' class='sb1')
+              button(class='search_btn logout-button' type='submit') Search
       else
         a(href='/' class='lk1') Home
         a(href='/user/login' class='lk1') Login
@@ -36,18 +37,14 @@ html
 
     block content
 
-
-  footer
-    p(class='cemetarians') Cemetarians
-    div(class='james author')
-      p(class='authorName') James Roberts
-      p: a(href='https://github.com/JamesRR91') https://github.com/JamesRR91
-    div(class='sean author')
-      p(class='authorName') Sean Pan
-      p: a(href='https://github.com/span9692') https://github.com/span9692
-    div(class='tony author')
-      p(class='authorName') Tony Hauck
-      p: a(href='https://github.com/hauck29') https://github.com/hauck29
-    div(class='zachery author')
-      p(class='authorName') Zachery Estefano
-      p: a(href='https://github.com/zestefano') https://github.com/zestefano
+  div
+    footer(class='footer')
+      p(class='cemetarians') Cemetarians
+      div(class='james author')
+        p: a(href='https://github.com/JamesRR91') James Roberts
+      div(class='sean author')
+        p: a(href='https://github.com/span9692') Sean Pan
+      div(class='tony author')
+        p: a(href='https://github.com/hauck29') Tony Hauck
+      div(class='zachery author')
+        p: a(href='https://github.com/zestefano') Zachery Estefano

@@ -31,4 +31,4 @@ block content
                 form(action='/user/watchlist/:id/delete' method='post')
                   input(type='hidden' name='_csrf' value=csrfToken)
                   input(type='hidden' name='horrormovieid' value=watchlist.id)
-                  button(type='submit' class='exhume' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard
+                  button(type='submit' class='exhume logout-button' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard

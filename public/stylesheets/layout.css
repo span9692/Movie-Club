@@ -54,9 +54,32 @@ h1 {
     display: block;
 }
 
-.logout-button {
-    color: white;
+/* .logout-button {
+    color:white;
     background-color: black;
+} */
+
+.logout-button {
+    box-shadow: 3px 1px 0px 0px #a83f37;
+	background-color:transparent;
+	border-radius:18px;
+	border:1px solid #ff1100;
+	display:inline-block;
+	cursor:pointer;
+	color:#ff0000;
+	font-family:Times New Roman;
+	font-size:18px;
+	padding:2px 6px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ab0b00;
+}
+.logout-button:hover {
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#f24437;
+}
+.logout-button:active {
+	position:relative;
+	top:1px;
 }
 
 .movie {
@@ -79,3 +102,47 @@ h1 {
     display: block;
     margin-right: 10px;
 }
+
+.footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 10em;
+    position: sticky;
+    bottom: 0vh;
+    width: 100%;
+}
+
+.bodycontainer {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.search {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.search_btn {
+    padding: 3px;
+}
+
+/* .authdiv {
+    display: flex;
+    justify-content: space-evenly;
+} */
