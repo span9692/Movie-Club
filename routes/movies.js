@@ -16,7 +16,7 @@ moviesRouter.get('/movies', csrfProtection, asyncHandler(async (req, res, next) 
         });
 }));
 
-moviesRouter.get('/movies/:movieid(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+moviesRouter.get('/movies/:movieid(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
     const movieid = parseInt(req.params.movieid, 10);
     const { userId } = req.session.auth;
     const result = await db.HorrorMovie.findByPk(movieid, {

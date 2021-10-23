@@ -2,9 +2,10 @@ extends layout.pug
 
 block content
     h1(class='movie')= result.HorrorMovie.title
-    form(action='/user/watchlist' method='post')
+    iframe(name='dummyframe' style='display: none;')
+    form(action='/user/watchlist' target='dummyframe' method='post')
         input(type='hidden' name='horrormovieid' value=result.id)
-        button(type='submit' class='btn btn-primary') Add Movie To Graveyard
+        button(type='submit' class='logout-button') Add Movie To Graveyard
     div(class='movieinfo')
         h3= `Directed By: ${result.HorrorMovie.director}`
         h3= `Scare Level: ${result.HorrorMovie.scarelevel}`
@@ -16,14 +17,14 @@ block content
     div(class='movie')
         img(src=`/images/movie${result.HorrorMovie.id}.jpg` style='width:400px')
     <!-- Add a movie description -->
-    h3(class='movie') Edit Your Review
+    h3(class='movie reviewtext') Edit Your Review
     div
         form(action=`/movies/${result.HorrorMovie.id}/edit` class='review-input' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             label(for='review')
             textarea(type='text' name='review')= `${result.review}`
             input(type='hidden' name='reviewid' value=result.id)
-            button(class='btn btn-primary' type='submit') Submit
+            button(class='logout-button' type='submit') Submit
     div(class='bigReviewBoxDiv')
         ul
             //- each userReview in result.Reviews

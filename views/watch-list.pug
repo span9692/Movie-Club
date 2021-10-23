@@ -12,22 +12,22 @@ block content
   table(class='table table-striped table-hover')
     thead(class='thead-dark')
       tr
-        th(scope='col') Title
-        th(scope='col') Director
-        th(scope='col') Release Date
-        th(scope='col') Rating
-        th(scope='col') Scare Level
-        th(scope='col') Remove From Graveyard
+        th(scope='col' class='reviewtext') Title
+        th(scope='col' class='reviewtext') Director
+        th(scope='col' class='reviewtext') Release Date
+        th(scope='col' class='reviewtext') Rating
+        th(scope='col' class='reviewtext') Scare Level
+        th(scope='col' class='reviewtext') Remove From Graveyard
 
     tbody
       each watchlist in horrorMovies
         tr
-          td(id='title'): a(href=`/movies/${watchlist.HorrorMovie.id}`) #{watchlist.HorrorMovie.title}
-          td(id='director')= watchlist.HorrorMovie.director
-          td(id='releasedate')= watchlist.HorrorMovie.releasedate
-          td(id='rating')= watchlist.HorrorMovie.rating
-          td(id='scarelevel')= watchlist.HorrorMovie.scarelevel
-          td(id='graveyard')
+          td(id='title' class='reviewtext'): a(href=`/movies/${watchlist.HorrorMovie.id}`) #{watchlist.HorrorMovie.title}
+          td(id='director' class='reviewtext')= watchlist.HorrorMovie.director
+          td(id='releasedate' class='reviewtext')= watchlist.HorrorMovie.releasedate
+          td(id='rating' class='reviewtext')= watchlist.HorrorMovie.rating
+          td(id='scarelevel' class='reviewtext')= watchlist.HorrorMovie.scarelevel
+          td(id='graveyard' class='reviewtext')
             div
                 form(action='/user/watchlist/:id/delete' method='post')
                   input(type='hidden' name='_csrf' value=csrfToken)
