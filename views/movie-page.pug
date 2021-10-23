@@ -7,9 +7,10 @@ append head
 block content
     h1(class='movie')= result.title
 
-    form(action='/user/watchlist' method='post')
-                  input(type='hidden' name='horrormovieid' value=result.id)
-                  button(type='submit' class='btn btn-primary logout-button') Add Movie To Graveyard
+    iframe(name='dummyframe' style='display: none;')
+    form(action='/user/watchlist' target='dummyframe' method='post')
+        input(type='hidden' name='horrormovieid' value=result.id)
+        button(type='submit' class='btn btn-primary logout-button' href='/movies/1') Add Movie To Graveyard
     p
     <!-- IMAGE-->
     //-     img(src=`/images/movie${result.id}.jpg` style='width:200px')
@@ -24,13 +25,17 @@ block content
     <!-- IMAGE-->
 
     div(class='movie')
-        img(src=`/images/movie${result.id}.jpg` style='width:200px')
+        img(src=`/images/movie${result.id}.jpg` style='width:400px')
     div(class='movie')
         p(class='score')= `Likes: ${votes}`
     if locals.authenticated
         div(class='movie')
-            button(id=`upvote-${result.id}-true` class='upvotebutton logout-button') Like
-            p(id='up')
+            if voteStatus
+                button(id=`upvote-${result.id}-true` class='upvotebutton logout-button') Unlike
+                p(id='up')
+            else
+                button(id=`upvote-${result.id}-true` class='upvotebutton logout-button') Like
+                p(id='up')
     <!-- Add a movie description -->
     div(class='movie')
         h3 Write a Review
@@ -44,14 +49,15 @@ block content
         ul
             each userReview in result.Reviews
                 div(class='smallReviewBoxDiv')
-                    li= userReview.review
-                        form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
-                            label(for='review')
-                            input(type='hidden' name='reviewid' value=userReview.id)
-                            input(type='hidden' name='horrormovieid' value=result.id)
-                            button(class='btn btn-primary logout-button' type='submit') Edit Review
-                        form(action=`/movies/${result.id}/delete` class='review-input' method='post')
-                            label(for='review')
-                            input(type='hidden' name='reviewid' value=userReview.id)
-                            input(type='hidden' name='horrormovieid' value=result.id)
-                            button(class='btn btn-primary logout-button' type='submit') Delete Review
+                    li(class='review-item')= userReview.review
+                        div(class='review-box')
+                            form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
+                                label(for='review')
+                                input(type='hidden' name='reviewid' value=userReview.id)
+                                input(type='hidden' name='horrormovieid' value=result.id)
+                                button(class='btn btn-primary logout-button' type='submit') Edit Review
+                            form(action=`/movies/${result.id}/delete` class='review-input' method='post')
+                                label(for='review')
+                                input(type='hidden' name='reviewid' value=userReview.id)
+                                input(type='hidden' name='horrormovieid' value=result.id)
+                                button(class='btn btn-primary logout-button' type='submit') Delete Review

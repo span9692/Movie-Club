@@ -1,6 +1,14 @@
 body{
-    font-family: fantasy;
-    color: red
+    font-family:'Times New Roman', Times, serif;
+    color: red;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .btn1 {
@@ -94,9 +102,6 @@ h1 {
 }
 .author {
     display: flex;
-    height: 50px;
-    width: fit-content;
-    margin: 0px
 }
 
 .authorName {
@@ -105,7 +110,58 @@ h1 {
 }
 
 .footer {
+    position: relative;
+    display:inline-flex;
+    justify-content: space-around;
+    margin-top: 25px;
+}
+
+.stock {
     display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.review-box {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    margin-right: 5px;
+    margin-bottom: 20px;
+}
+
+#homepage-image {
+    box-shadow: 0px 0px 10px 10px #070707;
+    border-radius: 10px;
+}
+
+.register-button {
+    margin-bottom: 1px;
+}
+
+tr > #title {
+    padding-left: 70px
+}
+
+tr > #director {
+    padding-left: 70px
+}
+
+tr > #releasedate {
+    padding-left: 60px
+}
+
+tr > #rating {
+    padding-left: 120px
+}
+
+tr > #scarelevel {
+    padding-left: 50px
+}
+    /* display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
@@ -113,7 +169,7 @@ h1 {
     position: sticky;
     bottom: 0vh;
     width: 100%;
-}
+} */
 
 .bodycontainer {
     display: flex;

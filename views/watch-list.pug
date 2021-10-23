@@ -17,16 +17,17 @@ block content
         th(scope='col') Release Date
         th(scope='col') Rating
         th(scope='col') Scare Level
+        th(scope='col') Remove From Graveyard
 
     tbody
       each watchlist in horrorMovies
         tr
-          td: a(href=`/movies/${watchlist.HorrorMovie.id}`) #{watchlist.HorrorMovie.title}
-          td= watchlist.HorrorMovie.director
-          td= watchlist.HorrorMovie.releasedate
-          td= watchlist.HorrorMovie.rating
-          td= watchlist.HorrorMovie.scarelevel
-          td
+          td(id='title'): a(href=`/movies/${watchlist.HorrorMovie.id}`) #{watchlist.HorrorMovie.title}
+          td(id='director')= watchlist.HorrorMovie.director
+          td(id='releasedate')= watchlist.HorrorMovie.releasedate
+          td(id='rating')= watchlist.HorrorMovie.rating
+          td(id='scarelevel')= watchlist.HorrorMovie.scarelevel
+          td(id='graveyard')
             div
                 form(action='/user/watchlist/:id/delete' method='post')
                   input(type='hidden' name='_csrf' value=csrfToken)
