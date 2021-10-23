@@ -7,9 +7,10 @@ append head
 block content
     h1(class='movie')= result.title
 
-    form(action='/user/watchlist' method='post')
-                  input(type='hidden' name='horrormovieid' value=result.id)
-                  button(type='submit' class='btn btn-primary') Add Movie To Graveyard
+    iframe(name='dummyframe' style='display: none;')
+    form(action='/user/watchlist' target='dummyframe' method='post')
+        input(type='hidden' name='horrormovieid' value=result.id)
+        button(type='submit' class='btn btn-primary' href='/movies/1') Add Movie To Graveyard
     p
     <!-- IMAGE-->
     //-     img(src=`/images/movie${result.id}.jpg` style='width:200px')
