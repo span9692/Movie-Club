@@ -2,9 +2,6 @@ extends layout.pug
 
 include utils.pug
 
-  head
-    link(rel='stylesheet' href='/stylesheets/layout.css')
-
 block content
 
   div(class='register-form')
@@ -19,15 +16,15 @@ block content
     +field('User Name ', 'username', user.username)
     +field('Password ', 'password', '', 'password')
     +field('Confirm Password ', 'confirmpassword', '', 'password')
-    div(class='py-4')
-      button(type='submit' class='btn btn-primary') Register
-  div
-    p: a(href='/user/login' class='lk1') Already have an account?
     div
-      a(href='/' class='lk1') Cancel
+      button(type='submit' class='btn register-button') Register
 
   form(action='/user/login' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     input(type='hidden' name='email' value='jrr@jrr.com')
     input(type='hidden' name='password' value='Reaper1!')
     button(type='submit') Demo User
+  div
+    p: a(href='/user/login' class='lk1') Already have an account?
+    div
+      a(href='/' class='lk1') Cancel
