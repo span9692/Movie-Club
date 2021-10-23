@@ -17,6 +17,7 @@ block content
         th(scope='col') Release Date
         th(scope='col') Rating
         th(scope='col') Scare Level
+        th(scope='col') Remove From Graveyard
 
     tbody
       each watchlist in horrorMovies
@@ -31,4 +32,4 @@ block content
                 form(action='/user/watchlist/:id/delete' method='post')
                   input(type='hidden' name='_csrf' value=csrfToken)
                   input(type='hidden' name='horrormovieid' value=watchlist.id)
-                  button(type='submit' class='exhume' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard
+                  button(type='submit' class='exhume btn1' id=`${watchlist.HorrorMovie.id}`) Remove Movie From Graveyard

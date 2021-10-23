@@ -1,6 +1,8 @@
 extends layout.pug
 
 block content
+    div(class='movie-lib-div')
+        h1(class='landing-h1') Search Result
     div(class='py-3')
     table(class='table table-striped table-hover')
         thead(class='thead-dark')
@@ -10,6 +12,7 @@ block content
                 th(scope='col') Release Date
                 th(scope='col') Rating
                 th(scope='col') Scare Level
+                th(scope='col') Add To Graveyard
         tbody
             each horrorMovie in movieSearch
                 tr
@@ -18,3 +21,9 @@ block content
                     td= horrorMovie.releasedate
                     td= horrorMovie.rating
                     td= horrorMovie.scarelevel
+                    td
+                        div
+                            iframe(name='dummyframe' style='display: none;')
+                            form(action='/user/watchlist' target='dummyframe' method='post')
+                                input(type='hidden' name='horrormovieid' value=horrorMovie.id)
+                                button(type='submit' class='btn1' id=`movie_${horrorMovie.id}`) Add Movie To Graveyard
