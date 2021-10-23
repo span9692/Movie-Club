@@ -16,12 +16,12 @@ block content
         tbody
             each horrorMovie in movieSearch
                 tr
-                    td: a(href=`/movies/${horrorMovie.id}`) #{horrorMovie.title}
-                    td= horrorMovie.director
-                    td= horrorMovie.releasedate
-                    td= horrorMovie.rating
-                    td= horrorMovie.scarelevel
-                    td
+                    td(id='title'): a(href=`/movies/${horrorMovie.id}`) #{horrorMovie.title}
+                    td(id='director')= horrorMovie.director
+                    td(id='releasedate')= horrorMovie.releasedate
+                    td(id='rating')= horrorMovie.rating
+                    td(id='scarelevel')= horrorMovie.scarelevel
+                    td(id='graveyard')
                         div
                             iframe(name='dummyframe' style='display: none;')
                             form(action='/user/watchlist' target='dummyframe' method='post')
