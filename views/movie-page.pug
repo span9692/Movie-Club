@@ -27,7 +27,7 @@ block content
     div(class='movie')
         img(src=`/images/movie${result.id}.jpg` style='width:400px')
     div(class='movie')
-        p(class='score')= `Likes: ${votes}`
+        p(class='score reviewtext')= `Likes: ${votes}`
     if locals.authenticated
         div(class='movie')
             if voteStatus
@@ -37,19 +37,19 @@ block content
                 button(id=`upvote-${result.id}-true` class='upvotebutton logout-button') Like
                 p(id='up')
     <!-- Add a movie description -->
-    div(class='movie')
+    div(class='movie reviewtext')
         h3 Write a Review
     div
         form(action=`/movies/${result.id}` class='review-input' method='post')
             label(for='review')
             textarea(type='text' name='review')
             input(type='hidden' name='horrormovieid' value=result.id)
-            button(class='btn btn-primary logout-button' type='submit') Submit
+            button(class='logout-button' type='submit') Submit
     div(class='bigReviewBoxDiv')
         ul
             each userReview in result.Reviews
                 div(class='smallReviewBoxDiv')
-                    li(class='review-item')= userReview.review
+                    li(class='review-item reviewtext')= userReview.review
                         div(class='review-box')
                             form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
                                 label(for='review')

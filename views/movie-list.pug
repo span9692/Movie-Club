@@ -7,22 +7,22 @@ block content
   table(class='table table-striped table-hover')
     thead(class='thead-dark')
       tr
-        th(scope='col') Title
-        th(scope='col') Director
-        th(scope='col') Release Date
-        th(scope='col') Rating
-        th(scope='col') Scare Level
-        th(scope='col') Add To Graveyard
+        th(scope='col' class='reviewtext') Title
+        th(scope='col' class='reviewtext') Director
+        th(scope='col' class='reviewtext') Release Date
+        th(scope='col' class='reviewtext') Rating
+        th(scope='col' class='reviewtext') Scare Level
+        th(scope='col' class='reviewtext') Add To Graveyard
 
     tbody
       each horrorMovie in horrorMovies
         tr
-          td(id='title'): a(href=`/movies/${horrorMovie.id}`) #{horrorMovie.title}
-          td(id='director')= horrorMovie.director
-          td(id='releasedate')= horrorMovie.releasedate
-          td(id='rating')= horrorMovie.rating
-          td(id='scarelevel')= horrorMovie.scarelevel
-          td(id='graveyard')
+          td(id='title' class='reviewtext'): a(href=`/movies/${horrorMovie.id}`) #{horrorMovie.title}
+          td(id='director' class='reviewtext')= horrorMovie.director
+          td(id='releasedate' class='reviewtext')= horrorMovie.releasedate
+          td(id='rating' class='reviewtext')= horrorMovie.rating
+          td(id='scarelevel' class='reviewtext')= horrorMovie.scarelevel
+          td(id='graveyard' class='reviewtext')
             div
                 form(action='/user/watchlist' method='post')
                   input(type='hidden' name='horrormovieid' value=horrorMovie.id)

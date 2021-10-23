@@ -3,7 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
-
+  br
   div(class='register-form')
     p Here is where you can sign up for a Screaming Cinemas account!
 
@@ -16,14 +16,12 @@ block content
     +field('User Name', 'username', user.username)
     +field('Password', 'password', '', 'password')
     +field('Confirm Password', 'confirmpassword', '', 'password')
-    div(class='py-4')
-      button(type='submit' class='btn btn-primary register-button logout-button') Register
-  div
-    p: a(href='/user/login' class='lk1') Already have an account?
-
-
+    button(type='submit' class='btn btn-primary register-button logout-button') Register
   form(action='/user/login' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     input(type='hidden' name='email' value='jrr@jrr.com')
     input(type='hidden' name='password' value='Reaper1!')
-    button(type='submit logout-button') Demo User
+    button(type='submit' class='logout-button') Demo User
+  br
+  div(class='movie')
+    p: a(href='/user/login') Already have an account?
