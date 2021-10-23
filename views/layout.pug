@@ -22,7 +22,7 @@ html
           form(action='/search' class='search-input' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             label(for='search')
-            input(type='text' name='search' class='sb1')
+            input(type='text' name='search' class='sb1' placeholder='Search for a movie...')
             button(class='search_btn' type='submit') Search
         else
           a(href='/' class='lk1') Home
@@ -31,7 +31,7 @@ html
           form(action='/search' class='search-input' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
             label(for='search')
-            input(type='text' name='search' class='sb1')
+            input(type='text' name='search' class='sb1' placeholder='Search for a movie...')
             button(class='search_btn' type='submit') Search
 
     block content

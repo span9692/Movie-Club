@@ -95,6 +95,7 @@ h1 {
 .stock {
     display: flex;
     justify-content: center;
+    margin-top: 5px;
 }
 
 .review-box {
@@ -109,7 +110,6 @@ h1 {
 }
 
 #homepage-image {
-    box-shadow: -3px 3px 1px 1px #070707;
+    box-shadow: 0px 0px 8px 3px #070707;
+    border-radius: 10px;
 }
-
-
