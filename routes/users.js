@@ -11,61 +11,61 @@ const usersRouter = express.Router();
 ///VERIFICATION OF INFORMATION
 const userValidators = [
   check('firstname')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for First Name')
-  .isLength({ max: 50 })
-  .withMessage('First Name must not be more than 50 characters long'),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for First Name')
+    .isLength({ max: 50 })
+    .withMessage('First Name must not be more than 50 characters long'),
   check('lastname')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for Last Name')
-  .isLength({ max: 50 })
-  .withMessage('Last Name must not be more than 50 characters long'),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Last Name')
+    .isLength({ max: 50 })
+    .withMessage('Last Name must not be more than 50 characters long'),
   check('email')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for Email Address')
-  .isLength({ max: 255 })
-  .withMessage('Email Address must not be more than 255 characters long')
-  .isEmail()
-  .withMessage('Email Address is not a valid email')
-  .custom((value) => {
-    return db.User.findOne({ where: { email: value } })
-    .then((user) => {
-      if (user) {
-        return Promise.reject('The provided Email Address is already in use by another account');
-      }
-    });
-  }),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address')
+    .isLength({ max: 255 })
+    .withMessage('Email Address must not be more than 255 characters long')
+    .isEmail()
+    .withMessage('Email Address is not a valid email')
+    .custom((value) => {
+      return db.User.findOne({ where: { email: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided Email Address is already in use by another account');
+          }
+        });
+    }),
   check('username')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for User Name')
-  .isLength({ max: 30 })
-  .withMessage('User Name must not be more than 30 characters long')
-  .custom((value) => {
-    return db.User.findOne({ where: { username: value } })
-    .then((user) => {
-      if (user) {
-        return Promise.reject('The provided User Name is already in use by another account');
-      }
-    });
-  }),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for User Name')
+    .isLength({ max: 30 })
+    .withMessage('User Name must not be more than 30 characters long')
+    .custom((value) => {
+      return db.User.findOne({ where: { username: value } })
+        .then((user) => {
+          if (user) {
+            return Promise.reject('The provided User Name is already in use by another account');
+          }
+        });
+    }),
   check('password')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for Password')
-  .isLength({ max: 50 })
-  .withMessage('Password must not be more than 50 characters long')
-  .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
-  .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password')
+    .isLength({ max: 50 })
+    .withMessage('Password must not be more than 50 characters long')
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
+    .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
   check('confirmpassword')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for Confirm Password')
-  .isLength({ max: 50 })
-  .withMessage('Confirm Password must not be more than 50 characters long')
-  .custom((value, { req }) => {
-    if (value !== req.body.password) {
-      throw new Error('Confirm Password does not match Password');
-    }
-    return true;
-  }),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Confirm Password')
+    .isLength({ max: 50 })
+    .withMessage('Confirm Password must not be more than 50 characters long')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Confirm Password does not match Password');
+      }
+      return true;
+    }),
 ];
 
 /* GET users listing. */
@@ -79,9 +79,9 @@ usersRouter.get("/user/register", csrfProtection, (req, res) => {
   });
 });
 
-  usersRouter.post("/user/register", csrfProtection, userValidators, asyncHandler(async (req, res) => {
-    const {
-      firstname,
+usersRouter.post("/user/register", csrfProtection, userValidators, asyncHandler(async (req, res) => {
+  const {
+    firstname,
     lastname,
     username,
     email,
@@ -117,19 +117,19 @@ usersRouter.get("/user/register", csrfProtection, (req, res) => {
 
 const loginValidators = [
   check('email')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for Email Address'),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address'),
   check('password')
-  .exists({ checkFalsy: true })
-  .withMessage('Please provide a value for Password'),
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password'),
 ];
 
 usersRouter.get("/user/login", csrfProtection, function (req, res, next) {
   res.render("user-login",
-  {
-    title: "Login",
-    csrfToken: req.csrfToken(),
-});
+    {
+      title: "Login",
+      csrfToken: req.csrfToken(),
+    });
 });
 
 usersRouter.post('/user/login', loginValidators, csrfProtection,
@@ -178,11 +178,11 @@ usersRouter.post("/user/logout", (req, res) => {
   res.redirect('/user/login');
 });
 
-usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async(req, res, next) => {
+usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async (req, res, next) => {
   const { userId } = req.session.auth
   const horrorMovies = await db.Watchlist.findAll(
     {
-      where: {userid: userId},
+      where: { userid: userId },
       include: db.HorrorMovie
     });
   res.render('watch-list',
@@ -193,19 +193,29 @@ usersRouter.get('/user/watchlist', csrfProtection, asyncHandler(async(req, res, 
     })
 }));
 
-usersRouter.post('/user/watchlist', requireAuth, asyncHandler(async(req, res, next) => {
+usersRouter.post('/user/watchlist', requireAuth, asyncHandler(async (req, res, next) => {
   const { horrormovieid } = req.body;
   const { userId } = req.session.auth
-  const watchlist = await db.Watchlist.create({
-    userid: userId,
-    horrormovieid,
+
+  const watchlistCheck = await db.Watchlist.findOne({
+    where: {
+      userid: userId,
+      horrormovieid,
+    }
   })
+
+  if (!watchlistCheck) {
+    await db.Watchlist.create({
+      userid: userId,
+      horrormovieid,
+    })
+  }
   return res.redirect(`/movies`)
   // res.redirect(`/movies/${horrormovieid}`)
 }));
 
-usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next) => {
-  const {userId} = req.session.auth
+usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async (req, res, next) => {
+  const { userId } = req.session.auth
   const horrormovieid = parseInt(req.params.id, 10);
   const watchlist = await db.Watchlist.findOne({
     where: {
@@ -214,8 +224,8 @@ usersRouter.get('/user/watchlist/:id/delete', asyncHandler(async(req, res, next)
     }
   });
   await watchlist.destroy();
-  const newWatchlist = await db.Watchlist.findAll({where: { userid: userId}, include: db.HorrorMovie});
-  return res.json({newWatchlist})
+  const newWatchlist = await db.Watchlist.findAll({ where: { userid: userId }, include: db.HorrorMovie });
+  return res.json({ newWatchlist })
 }))
 
 module.exports = usersRouter;
