@@ -29,8 +29,12 @@ block content
         p(class='score')= `Likes: ${votes}`
     if locals.authenticated
         div(class='movie')
-            button(id=`upvote-${result.id}-true` class='upvotebutton') Like
-            p(id='up')
+            if voteStatus
+                button(id=`upvote-${result.id}-true` class='upvotebutton') Unlike
+                p(id='up')
+            else
+                button(id=`upvote-${result.id}-true` class='upvotebutton') Like
+                p(id='up')
     <!-- Add a movie description -->
     div(class='movie')
         h3 Write a Review

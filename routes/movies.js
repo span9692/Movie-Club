@@ -18,6 +18,7 @@ moviesRouter.get('/movies', csrfProtection, asyncHandler(async (req, res, next) 
 
 moviesRouter.get('/movies/:movieid(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const movieid = parseInt(req.params.movieid, 10);
+    const { userId } = req.session.auth;
     const result = await db.HorrorMovie.findByPk(movieid, {
         where: { id: movieid },
         include: db.Review
@@ -28,12 +29,20 @@ moviesRouter.get('/movies/:movieid(\\d+)', csrfProtection, asyncHandler(async (r
         }
     })
     const votes = vote.length
-    
+
+    const voteStatus = await db.Vote.findOne({
+        where:{
+            userid: userId,
+            horrormovieid: movieid,
+        }
+    })
+
     res.render('movie-page',
         {
             title: 'Movies',
             result,
             votes: votes,
+            voteStatus,
             csrfToken: req.csrfToken(),
         });
 }));
@@ -70,7 +79,7 @@ moviesRouter.post('/movies/:movieid/vote', requireAuth, asyncHandler(async (req,
             // opinion: true
         }
     })
-    
+
 
     if(vote) {
         await vote.destroy()
@@ -88,7 +97,7 @@ moviesRouter.post('/movies/:movieid/vote', requireAuth, asyncHandler(async (req,
         }
     })
     const votes = upvoteopinions.length
-    
+
     res.json({votes: votes});
 
 }))
@@ -96,8 +105,8 @@ moviesRouter.post('/movies/:movieid/vote', requireAuth, asyncHandler(async (req,
 // query for entry on vote table with horrormovie id  and user id
 // if exists change to reflect new input if doesnt exist create to reflect input
 // upvote array length - downvote array length
-// send back as json 
-// make sure response is 200 
+// send back as json
+// make sure response is 200
 // edit score using dom manipulation
 
 // Reviews Edit Route

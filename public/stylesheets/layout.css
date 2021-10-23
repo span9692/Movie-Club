@@ -1,5 +1,5 @@
 body{
-    font-family: fantasy;
+    font-family:'Times New Roman', Times, serif;
     color: red;
     margin-left: 10%;
     margin-right: 10%;
@@ -89,17 +89,12 @@ h1 {
     position: relative;
     display:inline-flex;
     justify-content: space-around;
+    margin-top: 25px;
 }
 
 .stock {
     display: flex;
     justify-content: center;
-}
-
-.review-item {
-    /* display: flex;
-    flex-direction: row;
-    margin-right: 10px; */
 }
 
 .review-box {
@@ -111,4 +106,8 @@ h1 {
 .btn-primary {
     margin-right: 5px;
     margin-bottom: 20px;
+}
+
+#homepage-image {
+    box-shadow: -3px 3px 1px 1px #070707;
 }
