@@ -7,43 +7,45 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
         link(rel='stylesheet' href='/stylesheets/layout.css')
 
-  body
-    div(class='nav-bar')
-      div(class='topleft')
+  body(class='bodycontainer')
+
+    div(class='header')
+      div(class='logout')
         if locals.authenticated
           p= `Welcome ${user.firstname}`
           form(class='logout-form' action='/user/logout' method='post')
               button(class='logout-button') Logout
-      div(class='header')
-        if locals.authenticated
-          a(href='/' class='lk1') Home
-          a(href='/movies' class='lk1') Movie Morgue
-          a(href='/user/watchlist' class='lk1') My Movie Graveyard
-          form(action='/search' class='search-input' method='post')
-            input(type='hidden' name='_csrf' value=csrfToken)
-            label(for='search')
-            input(type='text' name='search' class='sb1' placeholder='Search for a movie...')
-            button(class='search_btn' type='submit') Search
-        else
-          a(href='/' class='lk1') Home
-          a(href='/user/login' class='lk1') Login
-          a(href='/movies' class='lk1') Movie Morgue
-          form(action='/search' class='search-input' method='post')
-            input(type='hidden' name='_csrf' value=csrfToken)
-            label(for='search')
-            input(type='text' name='search' class='sb1' placeholder='Search for a movie...')
-            button(class='search_btn' type='submit') Search
+      if locals.authenticated
+        a(href='/' class='lk1') Home
+        a(href='/movies' class='lk1') Movie Morgue
+        a(href='/user/watchlist' class='lk1') My Movie Graveyard
+        div(class='search')
+            form(action='/search' class='search-input' method='post')
+              input(type='hidden' name='_csrf' value=csrfToken)
+              label(for='search')
+              input(type='text' name='search' class='sb1')
+              button(class='search_btn logout-button' type='submit') Search
+      else
+        a(href='/' class='lk1') Home
+        a(href='/user/login' class='lk1') Login
+        a(href='/movies' class='lk1') Movie Morgue
+        div(class='search')
+            form(action='/search' class='search-input' method='post')
+              input(type='hidden' name='_csrf' value=csrfToken)
+              label(for='search')
+              input(type='text' name='search' class='sb1')
+              button(class='search_btn logout-button' type='submit') Search
 
     block content
 
-
-  footer(class='footer')
-    p(class='cemetarians') Cemetarians
-    div(class='james author')
-      p: a(href='https://github.com/JamesRR91') James Roberts
-    div(class='sean author')
-      p: a(href='https://github.com/span9692') Sean Pan
-    div(class='tony author')
-      p: a(href='https://github.com/hauck29') Tony Hauck
-    div(class='zachery author')
-      p: a(href='https://github.com/zestefano') Zachery Estefano
+  div
+    footer(class='footer')
+      p(class='cemetarians') Cemetarians
+      div(class='james author')
+        p: a(href='https://github.com/JamesRR91') James Roberts
+      div(class='sean author')
+        p: a(href='https://github.com/span9692') Sean Pan
+      div(class='tony author')
+        p: a(href='https://github.com/hauck29') Tony Hauck
+      div(class='zachery author')
+        p: a(href='https://github.com/zestefano') Zachery Estefano

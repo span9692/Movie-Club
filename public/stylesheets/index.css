@@ -15,3 +15,16 @@ h1 {
     display: flex;
     justify-content: space-evenly;
 }
+
+.mainpicdiv {
+    display: flex;
+    justify-content: center;
+}
+
+.mainpic {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 2px 2px 2px #555555;
+}
+
+
