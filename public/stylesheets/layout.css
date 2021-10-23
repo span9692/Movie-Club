@@ -1,6 +1,14 @@
 body{
     font-family: fantasy;
-    color: red
+    color: red;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .btn1 {
@@ -70,12 +78,37 @@ h1 {
 }
 .author {
     display: flex;
-    height: 50px;
-    width: fit-content;
-    margin: 0px
 }
 
 .authorName {
     display: block;
     margin-right: 10px;
+}
+
+.footer {
+    position: relative;
+    display:inline-flex;
+    justify-content: space-around;
+}
+
+.stock {
+    display: flex;
+    justify-content: center;
+}
+
+.review-item {
+    /* display: flex;
+    flex-direction: row;
+    margin-right: 10px; */
+}
+
+.review-box {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    margin-right: 5px;
+    margin-bottom: 20px;
 }

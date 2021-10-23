@@ -24,7 +24,7 @@ block content
     <!-- IMAGE-->
 
     div(class='movie')
-        img(src=`/images/movie${result.id}.jpg` style='width:200px')
+        img(src=`/images/movie${result.id}.jpg` style='width:400px')
     div(class='movie')
         p(class='score')= `Likes: ${votes}`
     if locals.authenticated
@@ -39,19 +39,20 @@ block content
             label(for='review')
             textarea(type='text' name='review')
             input(type='hidden' name='horrormovieid' value=result.id)
-            button(class='btn btn-primary' type='submit') Submit
+            button(class='btn btn-submit' type='submit') Submit
     div(class='bigReviewBoxDiv')
         ul
             each userReview in result.Reviews
                 div(class='smallReviewBoxDiv')
-                    li= userReview.review
-                        form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
-                            label(for='review')
-                            input(type='hidden' name='reviewid' value=userReview.id)
-                            input(type='hidden' name='horrormovieid' value=result.id)
-                            button(class='btn btn-primary' type='submit') Edit Review
-                        form(action=`/movies/${result.id}/delete` class='review-input' method='post')
-                            label(for='review')
-                            input(type='hidden' name='reviewid' value=userReview.id)
-                            input(type='hidden' name='horrormovieid' value=result.id)
-                            button(class='btn btn-primary' type='submit') Delete Review
+                    li(class='review-item')= userReview.review
+                        div(class='review-box')
+                            form(action=`/movies/${result.id}/edit/${userReview.id}` class='review-input' method='post')
+                                label(for='review')
+                                input(type='hidden' name='reviewid' value=userReview.id)
+                                input(type='hidden' name='horrormovieid' value=result.id)
+                                button(class='btn btn-primary' type='submit') Edit Review
+                            form(action=`/movies/${result.id}/delete` class='review-input' method='post')
+                                label(for='review')
+                                input(type='hidden' name='reviewid' value=userReview.id)
+                                input(type='hidden' name='horrormovieid' value=result.id)
+                                button(class='btn btn-primary' type='submit') Delete Review

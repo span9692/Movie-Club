@@ -9,14 +9,14 @@ block content
     +field('Email Address', 'email', email)
     +field('Password', 'password', null, 'password')
     div(class='py-4')
-      button(type='submit' class='btn-primary') Login
-      div
-        a(href='/user/register' class='btn-primary') Need to sign up for an account?
-      div
-        a(href='/' class='btn-warning') Cancel
-
+      button(type='submit' class='login-button') Login
   form(action='/user/login' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
     input(type='hidden' name='email' value='jrr@jrr.com')
     input(type='hidden' name='password' value='Reaper1!')
     button(type='submit') Demo User
+
+  div
+    a(href='/user/register' class='btn-primary') Need to sign up for an account?
+  div
+    a(href='/' class='btn-warning') Cancel

@@ -1,21 +1,22 @@
 extends layout.pug
 
 block content
-    h1= result.HorrorMovie.title
-    div
+    h1(class='movie')= result.HorrorMovie.title
+    form(action='/user/watchlist' method='post')
+        input(type='hidden' name='horrormovieid' value=result.id)
+        button(type='submit' class='btn btn-primary') Add Movie To Graveyard
+    div(class='movieinfo')
         h3= `Directed By: ${result.HorrorMovie.director}`
         h3= `Scare Level: ${result.HorrorMovie.scarelevel}`
         h3= `Rating: ${result.HorrorMovie.rating}`
         h3= `Release Date: ${result.HorrorMovie.releasedate}`
         h3= `Subgenre: ${result.HorrorMovie.subGenre}`
-    form(action='/user/watchlist' method='post')
-                  input(type='hidden' name='horrormovieid' value=result.id)
-                  button(type='submit' class='btn btn-primary') Add Movie To Graveyard
 
     <!-- Add a photo here later-->
-    img(src=`/images/movie${result.HorrorMovie.id}.jpg` style='width:200px')
+    div(class='movie')
+        img(src=`/images/movie${result.HorrorMovie.id}.jpg` style='width:400px')
     <!-- Add a movie description -->
-    h3 Edit Your Review
+    h3(class='movie') Edit Your Review
     div
         form(action=`/movies/${result.HorrorMovie.id}/edit` class='review-input' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
